@@ -20,7 +20,7 @@ namespace Ct.SubFinder.Infrastructure.ApiServiceAgent
                     Delete(content);
                     break;
                 case ApiMethod.GET:
-                    Get(content);
+                    Get(content).Wait();
                     break;
                 case ApiMethod.PATCH:
                     Patch(content);

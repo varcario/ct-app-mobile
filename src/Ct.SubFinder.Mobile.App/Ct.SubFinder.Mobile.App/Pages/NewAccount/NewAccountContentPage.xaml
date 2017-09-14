@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Ct.SubFinder.Mobile.App.Pages.NewAccount.NewAccountContentPage">
+    <ContentPage.Content>
+        <StackLayout>
+            <Entry Text="{Binding FirstName}" Placeholder="First name"/>
+                <Entry Text="{Binding LastName}" Placeholder="Last name"/>
+                <Entry Text="{Binding JobTitle}" Placeholder="Job title"/>
+                <Entry Text="{Binding Company}" Placeholder="Company"/>
+                <Entry Text="{Binding PhoneNumber}" Placeholder="Phone"/>
+                <Button Text="General Contractor" Command="{Binding ToggleIsGeneralContractorCommand}"/>
+                <Button Text="Sub Contractor" Command="{Binding ToggleIsSubContractorCommand}"/>
+                <Button Text="Next" Command="{Binding NextCommand}"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

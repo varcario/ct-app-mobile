@@ -55,7 +55,7 @@ namespace Ct.SubFinder.Core.GatewayService
                 Secrete = secrete
             };
 
-            _apiServiceAgent.Invoke(_content);
+           // _apiServiceAgent.Invoke(_content);
 
             var loginResponse = _content.Response as LoginApiResponse;
 

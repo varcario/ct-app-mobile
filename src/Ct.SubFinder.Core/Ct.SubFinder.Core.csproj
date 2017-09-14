@@ -5,7 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Business\Ct.SubFinder.Domain\Ct.SubFinder.Domain.csproj" />
+    <ProjectReference Include="..\Ct.SubFinder.Domain\Ct.SubFinder.Domain.csproj" />
     <ProjectReference Include="..\Ct.SubFinder.Infrastructure\Ct.SubFinder.Infrastructure.csproj" />
   </ItemGroup>  
 

@@ -45,7 +45,7 @@ namespace Ct.SubFinder.Mobile.App.Pages.Login
             if(identity != null)
             {
                 _appState.ChangeState(identity, (appState, i) => { appState.State.Identity = i; });
-                _navigationService.NavigateAsync("app:///MainMasterDetailPage");
+                _navigationService.NavigateAsync("app:///NavigationTabbedPage");
             }            
         }
     }

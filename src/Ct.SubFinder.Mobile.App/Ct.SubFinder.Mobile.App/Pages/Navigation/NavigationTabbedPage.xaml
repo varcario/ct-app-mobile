@@ -1,10 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Ct.SubFinder.Mobile.App.Pages.Navigation.NavigationTabbedPage">
-  <!--Pages can be added as references or inline-->
-    <ContentPage Title="Dashboard" />
-    <ContentPage Title="Contacts" />
-    <ContentPage Title="Messages" />
-    <ContentPage Title="Camera" />
+            xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+            xmlns:contacts="clr-namespace:Ct.SubFinder.Mobile.App.Pages.Contacts"
+            xmlns:messages="clr-namespace:Ct.SubFinder.Mobile.App.Pages.Messages"
+            xmlns:camera="clr-namespace:Ct.SubFinder.Mobile.App.Pages.Camera"
+            xmlns:dashboard="clr-namespace:Ct.SubFinder.Mobile.App.Pages.Dashboard"             
+            xmlns:main="clr-namespace:Ct.SubFinder.Mobile.App.Pages.Main"
+            x:Class="Ct.SubFinder.Mobile.App.Pages.Navigation.NavigationTabbedPage">
+    
+    <!--Pages can be added as references or inline-->
+    <dashboard:DashboardContentPage Title="DASHBOARD"/>
+    <contacts:ContactsContentPage Title="CONTACTS"/>
+    <messages:MessagesContentPage Title="MESSAGES"/>
+    <camera:CameraContentPage Title="CAMERA"/>
+
 </TabbedPage>

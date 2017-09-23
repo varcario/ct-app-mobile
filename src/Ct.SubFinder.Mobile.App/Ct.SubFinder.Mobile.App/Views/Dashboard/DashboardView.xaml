@@ -1,0 +1,226 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:control="clr-namespace:Xamarin.Forms;assembly=Xamarin.Forms.CarouselView"
+             x:Class="Ct.SubFinder.Mobile.App.Views.Dashboard.DashboardView"
+             BackgroundColor="#E6E6E6">
+  <ContentView.Content>
+
+            
+            <StackLayout >
+            <!--<ScrollView Grid.Row="0" Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                <StackLayout Orientation="Horizontal">
+                    <StackLayout.Children>
+                        
+                    </StackLayout.Children>
+                    <ListView ItemsSource="{Binding Profiles}">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <StackLayout Padding="15,10" Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                                        <Label VerticalOptions="FillAndExpand" 
+                            VerticalTextAlignment="Center" 
+                            Text="{Binding FirstName}" 
+                            FontSize="24"/>
+                                    </StackLayout>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </StackLayout>
+            </ScrollView>-->
+            <ScrollView Grid.Row="0" Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="Fill">
+                        <BoxView HeightRequest="80" WidthRequest="80" BackgroundColor="Blue"/>
+                        <BoxView HeightRequest="80" WidthRequest="80" BackgroundColor="Blue"/>
+                        <BoxView HeightRequest="80" WidthRequest="80" BackgroundColor="Blue"/>
+                        <BoxView HeightRequest="80" WidthRequest="80" BackgroundColor="Blue"/>
+                        <BoxView HeightRequest="80" WidthRequest="80" BackgroundColor="Blue"/>
+                        <BoxView HeightRequest="80" WidthRequest="80" BackgroundColor="Blue"/>
+                        <BoxView HeightRequest="80" WidthRequest="80" BackgroundColor="Blue"/>
+                        <BoxView HeightRequest="80" WidthRequest="80" BackgroundColor="Blue"/>
+                        <BoxView HeightRequest="80" WidthRequest="80" BackgroundColor="Blue"/>
+                        <BoxView HeightRequest="80" WidthRequest="80" BackgroundColor="Blue"/>
+                        <BoxView HeightRequest="80" WidthRequest="80" BackgroundColor="Blue"/>
+                        <BoxView HeightRequest="80" WidthRequest="80" BackgroundColor="Blue"/>
+                        <BoxView HeightRequest="80" WidthRequest="80" BackgroundColor="Blue"/>
+                        <BoxView HeightRequest="80" WidthRequest="80" BackgroundColor="Blue"/>
+                        <BoxView HeightRequest="80" WidthRequest="80" BackgroundColor="Blue"/>
+                        <BoxView HeightRequest="80" WidthRequest="80" BackgroundColor="Blue"/>
+                        <BoxView HeightRequest="80" WidthRequest="80" BackgroundColor="Blue"/>
+                        <BoxView HeightRequest="80" WidthRequest="80" BackgroundColor="Blue"/>
+                        <BoxView HeightRequest="80" WidthRequest="80" BackgroundColor="Blue"/>
+                        <BoxView HeightRequest="80" WidthRequest="80" BackgroundColor="Blue"/>
+                        <BoxView HeightRequest="80" WidthRequest="80" BackgroundColor="Blue"/>
+                        <BoxView HeightRequest="80" WidthRequest="80" BackgroundColor="Blue"/>
+                        <BoxView HeightRequest="80" WidthRequest="80" BackgroundColor="Blue"/>
+                        <BoxView HeightRequest="80" WidthRequest="80" BackgroundColor="Blue"/>
+                        <BoxView HeightRequest="80" WidthRequest="80" BackgroundColor="Blue"/>
+                        <BoxView HeightRequest="80" WidthRequest="80" BackgroundColor="Blue"/>
+                        <BoxView HeightRequest="80" WidthRequest="80" BackgroundColor="Blue"/>
+                        <BoxView HeightRequest="80" WidthRequest="80" BackgroundColor="Blue"/>
+                        <BoxView HeightRequest="80" WidthRequest="80" BackgroundColor="Blue"/>
+                        <BoxView HeightRequest="80" WidthRequest="80" BackgroundColor="Blue"/>
+                        <BoxView HeightRequest="80" WidthRequest="80" BackgroundColor="Blue"/>
+                        <BoxView HeightRequest="80" WidthRequest="80" BackgroundColor="Blue"/>
+                        <BoxView HeightRequest="80" WidthRequest="80" BackgroundColor="Blue"/>
+                        <BoxView HeightRequest="80" WidthRequest="80" BackgroundColor="Blue"/>
+                        <BoxView HeightRequest="80" WidthRequest="80" BackgroundColor="Blue"/>
+                        <BoxView HeightRequest="80" WidthRequest="80" BackgroundColor="Blue"/>
+                    </StackLayout>
+                </ScrollView>
+            <TableView>
+                <TableView.Root>
+                    <TableRoot Title="News">
+                        <TableSection Title="Announcements">
+                            <TextCell Text="Looking for a Plumber"/>
+
+                        </TableSection>
+                        <TableSection Title="Announcements">
+                            <TextCell Text="Looking for a Plumber"/>
+                        </TableSection>
+                        <TableSection Title="Announcements">
+                            <TextCell Text="Looking for a Plumber"/>
+                        </TableSection>
+                        <TableSection Title="Announcements">
+                            <TextCell Text="Looking for a Plumber"/>
+                        </TableSection>
+                        <TableSection Title="Announcements">
+                            <TextCell Text="Looking for a Plumber"/>
+                        </TableSection>
+                        <TableSection Title="Announcements">
+                            <TextCell Text="Looking for a Plumber"/>
+                        </TableSection>
+                        <TableSection Title="Announcements">
+                            <TextCell Text="Looking for a Plumber"/>
+                        </TableSection>
+                        <TableSection Title="Announcements">
+                            <TextCell Text="Looking for a Plumber"/>
+                        </TableSection>
+                        <TableSection Title="Announcements">
+                            <TextCell Text="Looking for a Plumber"/>
+                        </TableSection>
+                        <TableSection Title="Announcements">
+                            <TextCell Text="Looking for a Plumber"/>
+                        </TableSection>
+                        <TableSection Title="Announcements">
+                            <TextCell Text="Looking for a Plumber"/>
+                        </TableSection>
+                        <TableSection Title="Announcements">
+                            <TextCell Text="Looking for a Plumber"/>
+                        </TableSection>
+                        <TableSection Title="Announcements">
+                            <TextCell Text="Looking for a Plumber"/>
+                        </TableSection>
+                        <TableSection Title="Announcements">
+                            <TextCell Text="Looking for a Plumber"/>
+                        </TableSection>
+                        <TableSection Title="Announcements">
+                            <TextCell Text="Looking for a Plumber"/>
+                        </TableSection>
+                        <TableSection Title="Announcements">
+                            <TextCell Text="Looking for a Plumber"/>
+                        </TableSection>
+                        <TableSection Title="Announcements">
+                            <TextCell Text="Looking for a Plumber"/>
+                        </TableSection>
+                        <TableSection Title="Announcements">
+                            <TextCell Text="Looking for a Plumber"/>
+                        </TableSection>
+                        <TableSection Title="Announcements">
+                            <TextCell Text="Looking for a Plumber"/>
+                        </TableSection>
+                        <TableSection Title="Announcements">
+                            <TextCell Text="Looking for a Plumber"/>
+                        </TableSection>
+                        <TableSection Title="Announcements">
+                            <TextCell Text="Looking for a Plumber"/>
+                        </TableSection>
+                        <TableSection Title="Announcements">
+                            <TextCell Text="Looking for a Plumber"/>
+                        </TableSection>
+                        <TableSection Title="Announcements">
+                            <TextCell Text="Looking for a Plumber"/>
+                        </TableSection>
+                        <TableSection Title="Announcements">
+                            <TextCell Text="Looking for a Plumber"/>
+                        </TableSection>
+                        <TableSection Title="Announcements">
+                            <TextCell Text="Looking for a Plumber"/>
+                        </TableSection>
+                        <TableSection Title="Announcements">
+                            <TextCell Text="Looking for a Plumber"/>
+                        </TableSection>
+                        <TableSection Title="Announcements">
+                            <TextCell Text="Looking for a Plumber"/>
+                        </TableSection>
+                        <TableSection Title="Announcements">
+                            <TextCell Text="Looking for a Plumber"/>
+                        </TableSection>
+                        <TableSection Title="Announcements">
+                            <TextCell Text="Looking for a Plumber"/>
+                        </TableSection>
+                        <TableSection Title="Announcements">
+                            <TextCell Text="Looking for a Plumber"/>
+                        </TableSection>
+                        <TableSection Title="Announcements">
+                            <TextCell Text="Looking for a Plumber"/>
+                        </TableSection>
+                        <TableSection Title="Announcements">
+                            <TextCell Text="Looking for a Plumber"/>
+                        </TableSection>
+                        <TableSection Title="Announcements">
+                            <TextCell Text="Looking for a Plumber"/>
+                        </TableSection>
+                        <TableSection Title="Announcements">
+                            <TextCell Text="Looking for a Plumber"/>
+                        </TableSection>
+                        <TableSection Title="Announcements">
+                            <TextCell Text="Looking for a Plumber"/>
+                        </TableSection>
+                        <TableSection Title="Announcements">
+                            <TextCell Text="Looking for a Plumber"/>
+                        </TableSection>
+                        <TableSection Title="Announcements">
+                            <TextCell Text="Looking for a Plumber"/>
+                        </TableSection>
+                        <TableSection Title="Announcements">
+                            <TextCell Text="Looking for a Plumber"/>
+                        </TableSection>
+                        <TableSection Title="Announcements">
+                            <TextCell Text="Looking for a Plumber"/>
+                        </TableSection>
+                        <TableSection Title="Announcements">
+                            <TextCell Text="Looking for a Plumber"/>
+                        </TableSection>
+                        <TableSection Title="Announcements">
+                            <TextCell Text="Looking for a Plumber"/>
+                        </TableSection>
+                        <TableSection Title="Announcements">
+                            <TextCell Text="Looking for a Plumber"/>
+                        </TableSection>
+                        <TableSection Title="Announcements">
+                            <TextCell Text="Looking for a Plumber"/>
+                        </TableSection>
+                        <TableSection Title="Announcements">
+                            <TextCell Text="Looking for a Plumber"/>
+                        </TableSection>
+                        <TableSection Title="Announcements">
+                            <TextCell Text="Looking for a Plumber"/>
+                        </TableSection>
+                        <TableSection Title="Announcements">
+                            <TextCell Text="Looking for a Plumber"/>
+                        </TableSection>
+                        <TableSection Title="Announcements">
+                            <TextCell Text="Looking for a Plumber"/>
+                        </TableSection>
+                        <TableSection Title="Announcements">
+                            <TextCell Text="Looking for a Plumber"/>
+                        </TableSection>
+                    </TableRoot>
+                </TableView.Root>
+            </TableView>
+        </StackLayout>
+
+    </ContentView.Content>
+</ContentView>

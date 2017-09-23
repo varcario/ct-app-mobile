@@ -13,9 +13,11 @@ namespace Ct.SubFinder.Mobile.App.Pages.Main
         {
             TargetType = typeof(MainMasterDetailPageDetail);
         }
-        public int Id { get; set; }
+        public int MenuId { get; set; }
         public string Title { get; set; }
 
         public Type TargetType { get; set; }
+
+        public string Route { get; set; }
     }
 }

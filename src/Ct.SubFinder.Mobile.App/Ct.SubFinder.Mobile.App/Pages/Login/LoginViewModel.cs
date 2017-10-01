@@ -1,19 +1,18 @@
-﻿using Ct.SubFinder.Core.GatewayService;
-using Ct.SubFinder.Mobile.App.Core;
+﻿using Ct.SubFinder.Mobile.App.Controllers;
 using Prism.Commands;
 using Prism.Mvvm;
-using Prism.Navigation;
 using System;
 using System.Windows.Input;
 
 namespace Ct.SubFinder.Mobile.App.Pages.Login
 {
     public class LoginViewModel : BindableBase
-    {
-        private readonly INavigationService _navigationService;
-        private readonly GatewayApiServiceAgent _gatewayApi;
-        private readonly AppStateObservable _appState;
+    {        
+        private readonly AppController _appController;
 
+        #region Bindable Properties
+
+        public string Title { get; set; }
         private string _emailAddress = string.Empty;
         public string EmailAddress
         {
@@ -29,24 +28,25 @@ namespace Ct.SubFinder.Mobile.App.Pages.Login
         }
         public ICommand LogInCommand { set; get; }
 
-        public LoginViewModel(INavigationService navigationService, GatewayApiServiceAgent gatewayApi, AppStateObservable appState)
-        {
-            _navigationService = navigationService ?? throw new ArgumentNullException("navigationService");
-            _gatewayApi = gatewayApi ?? throw new ArgumentException("gatewayApi");
-            _appState = appState ?? throw new ArgumentNullException("appState");
+        #endregion
 
+        #region Constructor
+
+        public LoginViewModel(AppController appController)
+        {            
+            _appController = appController ?? throw new ArgumentException("appController");
+            Title = "Log in";
             LogInCommand = new DelegateCommand(Login);
         }
 
+        #endregion
+
         private void Login()
         {
-            var identity = _gatewayApi.Login(_emailAddress, _password);
-            //_gatewayApi.GetNewSession();
-            if(identity != null)
-            {
-                _appState.ChangeState(identity, (appState, i) => { appState.State.Identity = i; });
-                _navigationService.NavigateAsync("app:///NavigationTabbedPage");
-            }            
+            _appController.State.Session.Username = _emailAddress;
+            _appController.State.Session.Secrete = _password;
+            _appController.UpdateSession();
         }
     }
+
 }

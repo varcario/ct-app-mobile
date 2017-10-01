@@ -1,4 +1,4 @@
-﻿namespace Ct.SubFinder.Infrastructure.Interfaces
+﻿namespace Ct.App.Infrastructure.Interfaces
 {
     public enum Marker
     {

@@ -1,0 +1,154 @@
+//TODO: jquery-ify
+function getMetadata(metadataName) {
+    //var metaElement = $("meta[name=\"" + metadataName + "\"]");
+
+    var element = document.querySelector('meta[name="' + metadataName + '"]');
+    var metaElement = element.getAttribute("content");
+
+    if (metaElement.length !== 1) {
+        return null;
+    }
+    return metaElement.first().attr("content");
+}
+
+function generateGetMetadataHelperFunction(metadataName) {
+    return function() {
+        return getMetadata(metadataName);
+    };
+}
+
+var localeKeyInCookie = "MarketplaceSelectedLocale";
+
+var currentLocale;
+var langList =  {
+    "de-de": "Deutsch",
+    "en-us": "English",
+    "es-es": "Español",
+    "fr-fr": "Français",
+    "it-it": "Italiano",
+    "ja-jp": "日本語",
+    "ko-kr": "한국어",
+    "pt-br": "Português (Brasil)",
+    "ru-ru": "Pусский",
+    "zh-cn": "中文 (简体)",
+    "zh-tw": "中文 (繁體)",
+    // https://mseng.visualstudio.com/VSChina/Templating/_workitems?id=616446
+    "cs-cz": "Čeština",
+    "hu-hu": "Magyar",
+    "nl-nl": "Nederlands",
+    "pl-pl": "Polski",
+    "pt-pt": "Português (Portugal)",
+    //"sv-se": "Svenska",
+    "tr-tr": "Türkçe"
+};
+
+var getNeutralUrl = function (toLoc) {
+    var browserUrl = URI(window.location.href.toLowerCase());
+    var segment = browserUrl.segment()[0];
+    if (segment.indexOf('-') == 2) {
+      var locale = segment;
+      if (Object.keys(langList).indexOf(locale) >= 0) {
+        if (toLoc == "en-us")
+        {
+          browserUrl.segment(0, ""); // to english, remove locale
+        } else {
+          browserUrl.segment(0, toLoc); // between languages, replace locale
+        }
+      } else {
+        browserUrl.segment(0, ""); // HACK: undefined
+      }
+    } else {
+      var b = browserUrl.toString()
+      var u = "";
+      if (segment == "")
+      {
+        u = b + toLoc;  // from english root, append locale
+      } else {
+        u = b.replace(segment, toLoc + "/" + segment); // from english page, prepend locale
+      }
+      return u;
+    }
+    // BUG #563687:
+    // The following code will always let the page scroll to the top. Although it is not the behavior specified
+    // in the BUG ["remain in the same place"], it is expected in reality ["locale picker is always at the top"].
+    // In order not to introduce the complexity of preserving and retrieving page's scroll-top information, let's
+    // keep this as a quick fix.
+    browserUrl.fragment("");
+
+    return browserUrl.toString();
+};
+
+var getLanguageFromUrl = function () {
+    var browserUrl = URI(window.location.href.toLowerCase());
+
+    var segment = browserUrl.segment()[0];
+    if (segment.indexOf('-') == 2)
+    { // it's a locale string
+      var locale = segment; //browserUrl.segment()[0];
+      if (Object.keys(langList).indexOf(locale) >= 0) {
+          // a valid locale
+          return locale;
+      }
+    }
+    return "en-us"; //undefined
+};
+
+function setCurrentLocale() {
+    var contentLocale = getMetadata('locale');
+
+    currentLocale = getLanguageFromUrl();
+    if (currentLocale && contentLocale && contentLocale.trim() !== currentLocale.trim()) {
+        $('.disclaimer').show();
+    } else if (!contentLocale) {
+        console.log('Cannot detect content language from meta tag.');
+    }
+
+    currentLocale =  currentLocale || cookies.getCookie(localeKeyInCookie) || 'en-us';
+    if (!langList[currentLocale]) {
+        currentLocale = 'en-us';
+    }
+};
+
+// [Deprecated by hardcoding of selected locale in HTML]
+function setupLocalePicker(){
+    setCurrentLocale();
+
+    //var keys = langList.sortBy(langList.keys(langList));
+    var keys = Object.keys(langList);
+    var langCount = keys.length;
+
+    //var localeSelect = $("#locale-picker");
+    var localeSelect = document.querySelector('#locale-picker');
+    var selected = "";
+    for (var i = 0; i < langCount; i++) {
+        var key = keys[i];
+        selected = key === currentLocale ? "selected" : "";
+//        localeSelect.append("<option value='" + key + "' " + selected + ">" + langList[key] + "</option>");
+        if (key === currentLocale)
+          localeSelect.value = key;
+    }
+
+    //localeSelect.change(function() {
+
+    var localeSelect = document.querySelector('#locale-picker');
+    localeSelect.onchange = function() {
+    //    var selectedId = localeSelect.find(":selected").attr("data-id");
+    //    cookies.setCookie(localeKeyInCookie, selectedId, 'Fri, 31 Dec 9999 23:59:59 GMT');
+        var selectedId = localeSelect.value;
+        window.location.href = getNeutralUrl(selectedId);
+    }
+}
+
+// return {
+//     getLanguageFromUrl: getLanguageFromUrl,
+//     setupLocalePicker: setupLocalePicker
+// };
+
+
+//setupLocalePicker();
+
+var localeSelect = document.querySelector('#locale-picker');
+localeSelect.onchange = function() {
+    var selectedId = localeSelect.value;
+    window.location.href = getNeutralUrl(selectedId);
+}

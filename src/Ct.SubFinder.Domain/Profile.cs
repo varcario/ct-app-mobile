@@ -3,6 +3,10 @@ namespace Ct.SubFinder.Domain
 {
     public class Profile
     {
-        public string FirstName { get; set; }
+        public User User { get; set; }
+        public string JobTitle { get; set; }
+        public string Company { get; set; }
+        public string ZipCode { get; set; }
+        public double Radius { get; set; }
     }
 }

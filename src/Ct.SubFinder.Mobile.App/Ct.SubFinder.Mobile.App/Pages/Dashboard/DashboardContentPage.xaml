@@ -2,29 +2,36 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"       
              xmlns:vm="clr-namespace:Ct.SubFinder.Mobile.App.Pages.Dashboard"
+             xmlns:b="clr-namespace:Prism.Behaviors;assembly=Prism.Forms"
              x:Class="Ct.SubFinder.Mobile.App.Pages.Dashboard.DashboardContentPage"
-             BackgroundColor="#E6E6E6">
+             Title="Dashboard">
+    <ContentPage.BindingContext>
+        <vm:DashboardViewModel/>
+    </ContentPage.BindingContext>
     <ContentPage.Content>
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="10*"/>
-                <RowDefinition Height="80*"/>
-                <RowDefinition Height="10*"/>
-            </Grid.RowDefinitions>
-
-            <BoxView Grid.Row="0" BackgroundColor="#2A579A"/>
-            <StackLayout Grid.Row="0" HorizontalOptions="CenterAndExpand" VerticalOptions="Center">
-                <Entry Placeholder="Search"  HeightRequest="40" BackgroundColor="White" WidthRequest="80"/>
-            </StackLayout>
-            <ContentView Grid.Row="1" Content="{Binding View}" BackgroundColor="#E6E6E6"/>
-            <BoxView Grid.Row="2" BackgroundColor="#F1F1F1"/>
-            <StackLayout Grid.Row="2" Grid.Column="0" Orientation="Horizontal" HorizontalOptions="CenterAndExpand" VerticalOptions="Center">
-                <Button HeightRequest="36" WidthRequest="36" Command="{Binding DashboardCommand}" CommandParameter="1" />
-                <Button HeightRequest="36" WidthRequest="36" Command="{Binding DashboardCommand}" CommandParameter="2" />
-                <Button HeightRequest="36" WidthRequest="36" Command="{Binding DashboardCommand}" CommandParameter="3" />
-                <Button HeightRequest="36" WidthRequest="36" Command="{Binding DashboardCommand}" CommandParameter="4" />
-                <Button HeightRequest="36" WidthRequest="36" Command="{Binding DashboardCommand}" CommandParameter="5" />
-            </StackLayout>
-        </Grid>
+        <StackLayout Spacing="0">
+            <Grid Padding="0,10,0,10" BackgroundColor="#DDDDDD">
+                <Label Grid.Row="0" Text="NEWS FEED" HorizontalOptions="Start" VerticalOptions="Center" FontAttributes="Bold" FontFamily="Arial" FontSize="Large"/>
+            </Grid>
+            <Grid>
+            <ScrollView VerticalOptions="Fill">
+                <ListView 
+                    ItemsSource="{Binding Articles}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                            <StackLayout Padding="5" Orientation="Horizontal">
+                                <BoxView BackgroundColor="Blue"/>
+                                <StackLayout Spacing="0" VerticalOptions="Center">
+                                    <Label Text="{Binding Description}"/>
+                                </StackLayout>
+                            </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </ScrollView>
+            </Grid>
+        </StackLayout>
     </ContentPage.Content>
 </ContentPage>

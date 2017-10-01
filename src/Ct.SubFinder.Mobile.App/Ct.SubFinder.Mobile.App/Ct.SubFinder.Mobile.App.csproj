@@ -39,9 +39,12 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="MainPage.xaml.cs">
-      <DependentUpon>MainPage.xaml</DependentUpon>
-    </Compile>
+    <Compile Include="Controllers\AppController.cs" />
+    <Compile Include="Agents\Profile\PostProfileAgent.cs" />
+    <Compile Include="Agents\Profile\PutProfileAgent.cs" />
+    <Compile Include="Agents\Session\GetSessionAgent.cs" />
+    <Compile Include="Agents\Session\PostSessionAgent.cs" />
+    <Compile Include="Agents\User\PostUserAgent.cs" />
     <Compile Include="Pages\Camera\CameraContentPage.xaml.cs">
       <DependentUpon>CameraContentPage.xaml</DependentUpon>
     </Compile>
@@ -62,44 +65,39 @@
       <DependentUpon>LoginContentPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\Login\LoginViewModel.cs" />
-    <Compile Include="Pages\Main\MainMasterDetailPage.xaml.cs">
-      <DependentUpon>MainMasterDetailPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\Main\MainMasterDetailPageDetail.xaml.cs">
-      <DependentUpon>MainMasterDetailPageDetail.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\Main\MainMasterDetailPageMaster.xaml.cs">
-      <DependentUpon>MainMasterDetailPageMaster.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\Main\MainMasterDetailPageMenuItem.cs" />
-    <Compile Include="Pages\Main\MainViewModel.cs" />
     <Compile Include="Pages\Messages\MessagesContentPage.xaml.cs">
       <DependentUpon>MessagesContentPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\Messages\MessagesViewModel.cs" />
+    <Compile Include="Pages\Navigation\NavigationMasterDetailPage.xaml.cs">
+      <DependentUpon>NavigationMasterDetailPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Navigation\NavigationMasterDetailPageMaster.xaml.cs">
+      <DependentUpon>NavigationMasterDetailPageMaster.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Navigation\NavigationMasterDetailPageMenuItem.cs" />
+    <Compile Include="Pages\Navigation\NavigationMasterDetailViewModel.cs" />
     <Compile Include="Pages\Navigation\NavigationTabbedPage.xaml.cs">
       <DependentUpon>NavigationTabbedPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\Navigation\NavigationViewModel.cs" />
-    <Compile Include="Pages\NewAccount\NewAccountContentPage.xaml.cs">
-      <DependentUpon>NewAccountContentPage.xaml</DependentUpon>
+    <Compile Include="Pages\Navigation\NavigationTabbedViewModel.cs" />
+    <Compile Include="Pages\NewProfile\NewProfileContentPage.xaml.cs">
+      <DependentUpon>NewProfileContentPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\NewAccount\NewAccountViewModel.cs" />
-    <Compile Include="Pages\ProfileSelection\ProfileSelectionContentPage.xaml.cs">
-      <DependentUpon>ProfileSelectionContentPage.xaml</DependentUpon>
+    <Compile Include="Pages\NewProfile\NewProfileViewModel.cs" />
+    <Compile Include="Pages\SearchRadius\SearchRadiusContentPage.xaml.cs">
+      <DependentUpon>SearchRadiusContentPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\ProfileSelection\ProfileSelectionViewModel.cs" />
-    <Compile Include="Pages\SearchArea\SearchAreaContentPage.xaml.cs">
-      <DependentUpon>SearchAreaContentPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\SearchArea\SearchAreaViewModel.cs" />
+    <Compile Include="Pages\SearchRadius\SearchRadiusViewModel.cs" />
     <Compile Include="Pages\SignUp\SignUpContentPage.xaml.cs">
       <DependentUpon>SignUpContentPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\SignUp\SignUpViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\PerformanceTrace.cs" />
     <Compile Include="State\AppState.cs" />
     <Compile Include="State\AppStateObservable.cs" />
+    <Compile Include="State\AppStateEvent.cs" />
     <Compile Include="Views\Camera\CameraView.xaml.cs">
       <DependentUpon>CameraView.xaml</DependentUpon>
     </Compile>
@@ -118,20 +116,12 @@
     <Compile Include="Views\Messages\MessageViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="MainPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
     <EmbeddedResource Include="App.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Ct.SubFinder.Core\Ct.SubFinder.Core.csproj">
-      <Project>{3bdba56c-ab1f-4b40-bcec-cedfbfb3d64e}</Project>
-      <Name>Ct.SubFinder.Core</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Ct.SubFinder.Domain\Ct.SubFinder.Domain.csproj">
       <Project>{7d5ce3ae-f93b-45fd-b9e4-978f1af083d6}</Project>
       <Name>Ct.SubFinder.Domain</Name>
@@ -154,42 +144,27 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Pages\Main\MainMasterDetailPage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Pages\Main\MainMasterDetailPageMaster.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Pages\Main\MainMasterDetailPageDetail.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
     <EmbeddedResource Include="Pages\Navigation\NavigationTabbedPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Pages\NewAccount\NewAccountContentPage.xaml">
+    <EmbeddedResource Include="Pages\NewProfile\NewProfileContentPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Pages\SearchArea\SearchAreaContentPage.xaml">
+    <EmbeddedResource Include="Pages\SearchRadius\SearchRadiusContentPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Pages\Container\" />
+    <EmbeddedResource Include="Pages\Navigation\NavigationMasterDetailPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Pages\SignUp\SignUpContentPage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Pages\ProfileSelection\ProfileSelectionContentPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
@@ -212,6 +187,15 @@
     </Reference>
     <Reference Include="Prism.Unity.Forms, Version=6.3.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Prism.Unity.Forms.6.3.0\lib\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Prism.Unity.Forms.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http, Version=1.5.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.Net.Http.2.2.29\lib\portable-net40+sl4+win8+wp71+wpa81\System.Net.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.Extensions, Version=1.5.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.Net.Http.2.2.29\lib\portable-net40+sl4+win8+wp71+wpa81\System.Net.Http.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.Primitives, Version=1.5.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.Net.Http.2.2.29\lib\portable-net40+sl4+win8+wp71+wpa81\System.Net.Http.Primitives.dll</HintPath>
     </Reference>
     <Reference Include="Xamarin.Forms.CarouselView, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Xamarin.Forms.CarouselView.2.3.0-pre2\lib\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.CarouselView.dll</HintPath>
@@ -271,6 +255,12 @@
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Pages\Navigation\NavigationMasterDetailPageMaster.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="..\..\packages\Xamarin.Forms.2.3.4.270\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets" Condition="Exists('..\..\packages\Xamarin.Forms.2.3.4.270\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
@@ -278,5 +268,10 @@
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
     <Error Condition="!Exists('..\..\packages\Xamarin.Forms.2.3.4.270\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Xamarin.Forms.2.3.4.270\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets'))" />
+  </Target>
+  <Import Project="..\..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets" Condition="Exists('..\..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" />
+  <Target Name="EnsureBclBuildImported" BeforeTargets="BeforeBuild" Condition="'$(BclBuildImported)' == ''">
+    <Error Condition="!Exists('..\..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" Text="This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=317567." HelpKeyword="BCLBUILD2001" />
+    <Error Condition="Exists('..\..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" Text="The build restored NuGet packages. Build the project again to include these packages in the build. For more information, see http://go.microsoft.com/fwlink/?LinkID=317568." HelpKeyword="BCLBUILD2002" />
   </Target>
 </Project>

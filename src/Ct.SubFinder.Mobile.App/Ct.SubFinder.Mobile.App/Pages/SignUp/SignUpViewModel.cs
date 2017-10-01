@@ -1,18 +1,14 @@
-﻿using Prism.Commands;
+﻿using Ct.SubFinder.Mobile.App.Controllers;
+using Prism.Commands;
 using Prism.Mvvm;
-using Prism.Navigation;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace Ct.SubFinder.Mobile.App.Pages.SignUp
 {
     public class SignUpViewModel : BindableBase
     {
-        private readonly INavigationService _navigationService;
+        private readonly AppController _appController;
 
         private string _emailAddress = string.Empty;
         public string EmailAddress
@@ -29,16 +25,18 @@ namespace Ct.SubFinder.Mobile.App.Pages.SignUp
         }
         public ICommand NextCommand { set; get; }
 
-        public SignUpViewModel(INavigationService navigationService)
+        public SignUpViewModel(AppController appController)
         {
-            _navigationService = navigationService ?? throw new ArgumentNullException("navigationService");
+            _appController = appController ?? throw new ArgumentException("appController");
 
             NextCommand = new DelegateCommand(Next);
         }
 
         private void Next()
         {
-            _navigationService.NavigateAsync("app:///NavigationPage/HomeContentPage/SignUpContentPage/NewAccountContentPage");
+            _appController.State.Session.Username = _emailAddress;
+            _appController.State.Session.Secrete = _password;
+            _appController.CreateUser();
         }
     }
 }

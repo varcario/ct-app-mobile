@@ -3,10 +3,45 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Ct.SubFinder.Mobile.App.Pages.Login.LoginContentPage">
     <ContentPage.Content>
-        <StackLayout>
-            <Entry Text="{Binding EmailAddress}" Placeholder="Email" />
-            <Entry Text="{Binding Password}" Placeholder="Password" IsPassword="True" />
-            <Button Text="Login" Command="{Binding LogInCommand}"/>
-        </StackLayout>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="35*"/>
+                <RowDefinition Height="100*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="20*"/>
+                <ColumnDefinition Width="60*"/>
+                <ColumnDefinition Width="20*"/>
+            </Grid.ColumnDefinitions>
+            <StackLayout Grid.Row="1" Grid.ColumnSpan="3">
+                <Entry Text="{Binding EmailAddress}" Placeholder="Email" />
+                <Entry Text="{Binding Password}" Placeholder="Password" IsPassword="True" />
+                <Button Text="Next" Command="{Binding LogInCommand}"  Margin="0,35,0,0"/>
+            </StackLayout>
+        </Grid>
+        <!--<Grid Padding="12">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="25"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="1"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="100*"/>
+            </Grid.ColumnDefinitions>
+
+
+            <BoxView Grid.Row="1" Grid.ColumnSpan="2" BackgroundColor="White"/>
+            <Label Grid.Row="1" Grid.Column="0" Text="Email" TextColor="Black" VerticalOptions="Center"/>
+            <Entry Grid.Row="1" Grid.Column="1" Text="{Binding EmailAddress}" />
+            <BoxView Grid.Row="3" Grid.ColumnSpan="2" BackgroundColor="White"/>
+            <Label Grid.Row="3" Grid.Column="0" Text="Password" TextColor="Black" VerticalOptions="Center"/>
+            <Entry Grid.Row="3" Grid.Column="1" Text="{Binding Password}" IsPassword="True" />
+            <Button Grid.Row="4" Grid.ColumnSpan="2" HorizontalOptions="Center" Text="Log In" Command="{Binding LogInCommand}"  Margin="0,35,0,0"/>
+
+
+        </Grid>-->
     </ContentPage.Content>
 </ContentPage>

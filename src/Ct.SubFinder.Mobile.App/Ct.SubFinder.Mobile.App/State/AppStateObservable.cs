@@ -1,39 +1,28 @@
-﻿using System;
+﻿using Ct.SubFinder.Infrastructure.Interfaces;
+using Ct.SubFinder.Mobile.App.State;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Ct.SubFinder.Mobile.App.Core
 {
-    public class AppStateObservable : IObservable<AppState>
-    {        
-       
-        private readonly List<IObserver<AppState>> _observers;
+    public class AppStateObservable : IAppState<AppState, AppStateEvent>
+    {       
+        private readonly List<IObserver<AppStateEvent>> _observers;
 
-        public readonly AppState State;
+        public AppState State { get; private set; }
        
-        public AppStateObservable()
+        public AppStateObservable(AppState state)
         {
-            State = new AppState();
-            _observers = new List<IObserver<AppState>>();
-        }
-
-        public IDisposable Subscribe(IObserver<AppState> observer)
-        {
-            if (!_observers.Contains(observer))
-            {
-                _observers.Add(observer);
-            }
-            return new Unsubscriber(_observers, observer);
-        }
+            State = state ?? throw new ArgumentNullException("state");
+            _observers = new List<IObserver<AppStateEvent>>();
+        }  
 
         private class Unsubscriber : IDisposable
         {
-            private List<IObserver<AppState>> _observers;
-            private IObserver<AppState> _observer;
+            private List<IObserver<AppStateEvent>> _observers;
+            private IObserver<AppStateEvent> _observer;
 
-            public Unsubscriber(List<IObserver<AppState>> observers, IObserver<AppState> observer)
+            public Unsubscriber(List<IObserver<AppStateEvent>> observers, IObserver<AppStateEvent> observer)
             {
                 _observers = observers;
                 _observer = observer;
@@ -44,16 +33,7 @@ namespace Ct.SubFinder.Mobile.App.Core
                 if (_observer != null && _observers.Contains(_observer))
                     _observers.Remove(_observer);
             }
-        }
-
-        public void ChangeState<T>(T newStateObject, Action<AppStateObservable, T> reducer)
-        {
-            reducer.Invoke(this, newStateObject);
-            foreach (var observer in _observers)
-            {
-                observer.OnNext(State);
-            }
-        }
+        } 
 
         public void EndTransmission()
         {
@@ -66,6 +46,23 @@ namespace Ct.SubFinder.Mobile.App.Core
             }
 
             _observers.Clear();
+        }
+
+        public void NotifySubscribers(AppStateEvent topic)
+        {
+            foreach (var observer in _observers)
+            {
+                observer.OnNext(topic);
+            }
+        }
+
+        public IDisposable Subscribe(IObserver<AppStateEvent> observer)
+        {
+            if (!_observers.Contains(observer))
+            {
+                _observers.Add(observer);
+            }
+            return new Unsubscriber(_observers, observer);
         }
     }
 }

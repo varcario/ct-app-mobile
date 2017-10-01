@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Ct.SubFinder.Infrastructure.Interfaces
+namespace Ct.App.Infrastructure.Interfaces
 {
     public interface IBusinessLogic<STATE>
     {

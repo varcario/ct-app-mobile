@@ -4,8 +4,69 @@
                         xmlns:prism="clr-namespace:Prism.Unity;assembly=Prism.Unity.Forms"
                        x:Class="Ct.SubFinder.Mobile.App.App">
     <Application.Resources>
+        <ResourceDictionary>
+            <!--<Color x:Key="HyperLinkTextColor">#1A0DAD</Color>
+            <Color x:Key="PrimaryBackgroundColor">#F0F0F0</Color>
+            <Color x:Key="PrimaryTextColor">#1F1F1F</Color>
+            --><!--<Color x:Key="NormalButtonBackgroundColor">#FFDF66</Color>--><!--
+            <Color x:Key="NormalButtonBackgroundColor">#C3C3C3</Color>
+            <Color x:Key="NormalButtonTextColor">#1F1F1F</Color>
+            <Color x:Key="LightBackgroundColor">#FFFFFF</Color>
+            <Color x:Key="EntryBackgroundColor">#FFFFFF</Color>-->
+            
+            <!--<Color x:Key="HyperLinkTextColor">#F9F9f9</Color>
+            <Color x:Key="PrimaryBackgroundColor">#1E1E1E</Color>
+            <Color x:Key="PrimaryTextColor">#E0E0E0</Color>
+            --><!--<Color x:Key="NormalButtonBackgroundColor">#FFDF66</Color>--><!--
+            <Color x:Key="NormalButtonBackgroundColor">#FFEA00</Color>
+            <Color x:Key="NormalButtonTextColor">#000000</Color>
+            <Color x:Key="LightBackgroundColor">#484848</Color>
+            <Color x:Key="EntryBackgroundColor">#EAEAEA</Color>-->
 
-        <!-- Application resource dictionary -->
+            <!-- Application resource dictionary -->
+            
+            <!--<Style TargetType="NavigationPage">
+                <Setter Property="BarBackgroundColor" Value="{StaticResource LightBackgroundColor}"/>
+                <Setter Property="BarTextColor" Value="{StaticResource PrimaryTextColor}"/>
+            </Style>
+            <Style TargetType="TabbedPage">
+                <Setter Property="BarBackgroundColor" Value="{StaticResource LightBackgroundColor}"/>
+                <Setter Property="BarTextColor" Value="{StaticResource HyperLinkTextColor}"/>
+            </Style>
+            <Style TargetType="ContentPage">
+                <Setter Property="BackgroundColor" Value="{StaticResource LightBackgroundColor}"/>
+            </Style>-->
 
+            <!--<Style x:Key="HyperlinkButtonStyle" TargetType="Button">
+                <Setter Property="FontSize" Value="Medium"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
+                <Setter Property="TextColor" Value="{StaticResource HyperLinkTextColor}"/>
+                <Setter Property="BackgroundColor" Value="{StaticResource PrimaryBackgroundColor}"/>
+                <Setter Property="BorderWidth" Value="5"/>
+                <Setter Property="BorderColor" Value="{StaticResource PrimaryTextColor}"/>
+                <Setter Property="BorderRadius" Value="5"/>
+            </Style>-->
+
+            <!--<Style TargetType="Grid">
+                <Setter Property="BackgroundColor" Value="{StaticResource PrimaryBackgroundColor}"/>
+            </Style>
+
+            <Style TargetType="StackLayout">
+                <Setter Property="BackgroundColor" Value="{StaticResource PrimaryBackgroundColor}"/>
+            </Style>
+            <Style TargetType="Entry">
+                <Setter Property="BackgroundColor" Value="{StaticResource EntryBackgroundColor}"/>
+            </Style>
+
+            <Style TargetType="Button">
+                <Setter Property="FontSize" Value="Medium"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
+                <Setter Property="TextColor" Value="{StaticResource PrimaryTextColor}"/>
+                <Setter Property="BackgroundColor" Value="{StaticResource NormalButtonBackgroundColor}"/>
+            </Style>-->
+            <!--<Style x:Key="BoxViewLightBackground" TargetType="BoxView">
+                <Setter Property="BackgroundColor" Value="{StaticResource LightBackgroundColor}"/>
+            </Style>-->
+        </ResourceDictionary>
     </Application.Resources>
 </prism:PrismApplication>

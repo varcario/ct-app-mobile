@@ -1,8 +1,8 @@
-﻿using Ct.SubFinder.Infrastructure.Interfaces;
+﻿using Ct.App.Infrastructure.Interfaces;
 using System;
 
 
-namespace Ct.SubFinder.Infrastructure.Infrastructure
+namespace Ct.App.Infrastructure.Infrastructure
 {
     public abstract class ServiceAdapter<STATE, BUSINESS_LOGIC, RESPONSE> : IServiceAdapter<STATE, BUSINESS_LOGIC, RESPONSE> where BUSINESS_LOGIC: IBusinessLogic<STATE>
     {

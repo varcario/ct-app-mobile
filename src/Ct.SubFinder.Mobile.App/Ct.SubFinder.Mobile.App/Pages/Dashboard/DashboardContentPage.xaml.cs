@@ -11,6 +11,5 @@ namespace Ct.SubFinder.Mobile.App.Pages.Dashboard
             InitializeComponent();            
 		}
 
-        public DashboardContentPage(DashboardViewModel viewModel) => BindingContext = viewModel;
     }
 }

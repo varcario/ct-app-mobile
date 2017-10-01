@@ -1,21 +1,20 @@
-﻿using Prism.Commands;
+﻿using Ct.SubFinder.Mobile.App.Controllers;
+using Prism.Commands;
 using Prism.Mvvm;
-using Prism.Navigation;
 using System;
 
 namespace Ct.SubFinder.Mobile.App.Pages.Home
 {
     public class HomeViewModel : BindableBase
     {
-        private readonly INavigationService _navigationService;
-
+        private readonly AppController _appController;
 
         public DelegateCommand LogInCommand { set; get; }
         public DelegateCommand SignUpCommand { set; get; }
 
-        public HomeViewModel(INavigationService navigationService)
+        public HomeViewModel(AppController appController)
         {
-            _navigationService = navigationService ?? throw new ArgumentNullException("navigationService");
+            _appController = appController ?? throw new ArgumentException("appController");
 
             LogInCommand = new DelegateCommand(Login);
             SignUpCommand = new DelegateCommand(SignUp);
@@ -23,12 +22,12 @@ namespace Ct.SubFinder.Mobile.App.Pages.Home
 
         private void Login()
         {
-            _navigationService.NavigateAsync("app:///NavigationPage/HomeContentPage/LoginContentPage");
+            _appController.NavigateToLogin();
         }
 
         private void SignUp()
         {
-            _navigationService.NavigateAsync("app:///NavigationPage/HomeContentPage/SignUpContentPage");
+            _appController.NavigateToSignUp();
         }
     }
 }

@@ -1,0 +1,537 @@
+if (typeof jQuery != 'undefined') {
+  jQuery(document).ready(function($) {
+
+    var filetypes = /\.(workbook|zip|exe|dmg|pkg|msi|pdf|doc.*|xls.*|ppt.*|mp3|txt|rar|wma|mov|avi|wmv|flv|wav)$/i;
+    var baseHref = '';
+    if (jQuery('base').attr('href') != undefined) baseHref = jQuery('base').attr('href');
+
+    jQuery('a').on('click', function(event) {
+
+      var el = jQuery(this);
+      var track = true;
+      var href = (typeof(el.attr('href')) != 'undefined' ) ? el.attr('href') :"";
+
+      var isThisDomain = href.match(document.domain.split('.').reverse()[1] + '.' + document.domain.split('.').reverse()[0]);
+
+      if (!href.match(/^javascript:/i)) {
+        var elEv = []; elEv.value=0, elEv.non_i=false;
+        if (href.match(/^mailto\:/i)) {
+          elEv.category = "email";
+          elEv.action = "click";
+          elEv.label = href.replace(/^mailto\:/i, '');
+          elEv.loc = href;
+        }
+        else if (href.match(filetypes)) {
+          var extension = (/[.]/.exec(href)) ? /[^.]+$/.exec(href) : undefined;
+          elEv.category = "download";
+          elEv.action = "click-" + extension[0];
+          elEv.label = href.replace(/ /g,"-");
+          elEv.loc = baseHref + href;
+        }
+        else if (href.match(/^https?\:/i) && !isThisDomain) {
+          elEv.category = "external";
+          elEv.action = "click";
+          elEv.label = href.replace(/^https?\:\/\//i, '');
+          elEv.non_i = true;
+          elEv.loc = href;
+        }
+        else if (href.match(/^tel\:/i)) {
+          elEv.category = "telephone";
+          elEv.action = "click";
+          elEv.label = href.replace(/^tel\:/i, '');
+          elEv.loc = href;
+        }
+        else track = false;
+
+        if (track) {
+          _gaq.push(['_trackEvent', elEv.category.toLowerCase(), elEv.action.toLowerCase(), elEv.label.toLowerCase(), elEv.value, elEv.non_i]);
+          if ( el.attr('target') == undefined || el.attr('target').toLowerCase() != '_blank') {
+            setTimeout(function() { location.href = elEv.loc; }, 400);
+            return false;
+      }
+    }
+      }
+    });
+  });
+}
+
+(function ($) {
+$(function() {
+
+    var queryDict = {};
+    location.search.substr(1).split("&").forEach(function(item) {queryDict[item.split("=")[0]] = item.split("=")[1]})
+
+    // make the video hero boxes clickable
+    $("#video-instruction a").each(function() {
+       var a = $(this);
+       console.log(a);
+       a.parent().parent().click(function() {
+            window.location = a.attr("href");
+       });
+    });
+
+    var vidMenuClicked = function(a, pushit) {
+        var id = a.attr("data-id");
+        var title = a.attr("data-title");
+
+        var existingMenu = $(".active-menu");
+        var existingVideo = $(".active-video");
+
+        var targetVideo = $("#" + id);
+
+        existingMenu.toggleClass("active-menu");
+        existingVideo.toggleClass("active-video");
+        targetVideo.toggleClass("active-video");
+        a.parent().toggleClass("active-menu");
+
+        if (pushit) {
+            var newurl = "?v=" + title;
+            console.log("changing URL to: " + newurl);
+            window.history.pushState({title:title, id:id}, title.replace("_", " "), newurl);
+        }
+    }
+
+    window.addEventListener("popstate", function(e) {
+        var state = e.state;
+
+        if (state) {
+            var a = $("#menuitem-" + state.title.replace(".", "\\."));
+            vidMenuClicked(a, false);
+        }
+        else {
+            var a = $(".vid-item:first");
+            vidMenuClicked(a, false);
+        }
+    });
+
+    // video page
+    $(".vid-item").each(function() {
+        var a = $(this);
+        a.click(function() {
+            vidMenuClicked(a, true);
+            return false;
+        });
+    });
+
+    // now, see if we have a "v" parameter and switch to that video
+    if (queryDict["v"]) {
+        var vidid = queryDict["v"];
+        var a = $("#menuitem-" + vidid.replace(".", "\\."));
+        vidMenuClicked(a, false);
+    }
+
+    // authentication, set the SSO url
+    var loginbutton = $("#loginbutton a");
+    var callbackurl = window.location.protocol + "//" +  window.location.host + "/auth/callback?prev=" + encodeURIComponent(location.href);
+    var ssourl = "https://auth.xamarin.com/account/logon?app_id=dev-portal&returnUrl=" + encodeURIComponent(callbackurl);
+    loginbutton.attr("href", ssourl);
+
+    // authentication, check to see if they're logged in
+    $.ajax({
+        type:"GET",
+        url: "/Auth/Details",
+        data:{},
+        dataType:"json",
+        success: function( response ) {
+            if (response.auth) {
+                var imageHtml = '<a href="https://store.xamarin.com/account/my/subscription"><img src="https://secure.gravatar.com/avatar/'+ response.image +'?s=32&r=x&d='+ encodeURIComponent("https://xamarin.com/content/images/structure/header/default-avatar.png") +'" />'+ response.name +'</a><ul role="menu"><li><a href="/auth/logout">Sign out</a></li></ul>';
+                $("#loginbutton").html(imageHtml).addClass("dropdown");
+
+                if (response.admin)
+                    $(".auth-only").show();
+            }
+        }
+    });
+
+    // humanize any dates
+    $(".humanize-date").each(function() {
+      var date = $(this).text();
+      var fulldate = $(this).attr("data-fulldate");
+      var thatMoment = fulldate ? moment(fulldate) : moment(date);
+      if (moment().diff(thatMoment, "months") <= 6) {
+        $(this).text(thatMoment.fromNow());
+      }
+      else {
+        $(this).text(thatMoment.format("MMMM YYYY"));
+      }
+    });
+
+    // cookies
+    function createCookie(name, value, days) {
+        if (window.CreateCookies) {
+            var expires;
+
+            if (days) {
+                var date = new Date();
+                date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+                expires = "; expires=" + date.toGMTString();
+            } else {
+                expires = "";
+            }
+            document.cookie = escape(name) + "=" + escape(value) + expires + "; path=/";
+        }
+    }
+
+    function readCookie(name) {
+        var nameEQ = escape(name) + "=";
+        var ca = document.cookie.split(';');
+        for (var i = 0; i < ca.length; i++) {
+            var c = ca[i];
+            while (c.charAt(0) === ' ') c = c.substring(1, c.length);
+            if (c.indexOf(nameEQ) === 0) return unescape(c.substring(nameEQ.length, c.length));
+        }
+        return null;
+    }
+
+
+  /////////////////////
+
+  // IDE Selector ---------------------------------------------------------------------------- //
+
+
+    var $ideSelector = $('#ide-selector');
+
+    $ideSelector.bind('recalc', function(e, newValue) {
+        var value;
+        if (newValue == undefined) {
+            value = readCookie("idevalue");
+
+            if (value == null) {
+                if (navigator.platform && navigator.platform.substr(0, 3) === "Win")
+                    value = "vs";
+                else
+                    value = "xs";
+            }
+        } else {
+            value = newValue;
+            createCookie("idevalue", value, 9999);
+        }
+
+        $(this).find('a').removeClass('active');
+        $(this).find('a[data-name="' + value + '"]').addClass('active');
+
+        $('main ide, main .ide').removeClass('ide-show');
+        $('main ide, main .ide').addClass('ide-hide');
+        $('main ide[name="' + value + '"], main .ide.' + value).removeClass('ide-hide');
+        $('main ide[name="' + value + '"], main .ide.' + value).addClass('ide-show');
+
+    });
+
+    if ($ideSelector.length > 0) {
+        $ideSelector.trigger('recalc');
+    }
+
+    $ideSelector.on('click', 'a', function(e) {
+        e.preventDefault();
+        $ideSelector.trigger('recalc', $(this).attr('data-name'));
+    });
+
+    if (queryDict["ide"] === "vs") {
+        $ideSelector.trigger('recalc', "vs");
+    }
+    else if (queryDict["ide"] === "xs") {
+        $ideSelector.trigger('recalc', "xs");
+    }
+  /////////////////////
+
+  // Tree Navigation -------------------------------------------------------------------------- //
+    addExpandableArrows();
+
+
+    bindTreeEvents($('.sidebar-container li'));
+
+    // Product switcher ------------------------------------------------------------------------- //
+
+    $('.sidebar-container li.product > a').on('click', function(e) {
+        e.preventDefault();
+        var li = $(e.target).parent();
+
+        if (li.hasClass('active')) {
+            return;
+        }
+
+        $('.sidebar-container li.product.active > ul').stop(true, true).show().slideUp({
+            duration: 400,
+            complete: recalcSidebar
+        });
+
+        $('.sidebar-container li').removeClass('active');
+        li.addClass('active');
+
+        li.find('> ul').stop(true, true).hide().slideDown({
+            duration: 400,
+            complete: recalcSidebar
+        });
+
+        recalcSidebar();
+    });
+
+// auto anchors
+function slugify(str) {
+    var stripped = strip_vowel_accent(str);
+    return stripped.replace(/[^A-Za-z0-9-\. ]/g, "").replace(/[ /\\]+/g, "_");
+}
+
+function strip_vowel_accent(str) {
+    var s = str;
+
+    var expressions = [/[\xC0-\xC4]/g, /[\xE0-\xE5]/g,
+  /[\xC8-\xCB]/g, /[\xE8-\xEB]/g,
+  /[\xCC-\xCF]/g, /[\xEC-\xEF]/g,
+  /[\xD2-\xD6]/g, /[\xF2-\xF6]/g,
+  /[\xD9-\xDC]/g, /[\xF9-\xFC]/g];
+
+    var rep_char = ['A', 'a', 'E', 'e', 'I', 'i', 'O', 'o', 'U', 'u'];
+
+    for (var i = 0; i < expressions.length; i++) {
+    s = s.replace(expressions[i], rep_char[i]);
+    }
+
+    return s;
+}
+$(function() {
+  var doc = $('.doc-content');
+  doc.find('h1,h2,h3,h4,h5,h6').each(function(i) {
+    var title_text = $(this).text();
+    var newanchortext = slugify(title_text);
+
+    $(this).before('<a name="' + newanchortext + '" class="injected"></a>');
+    var floater = $('<div class="floater"><a href="#' + newanchortext + '" class="injected" title="permalink">&nbsp;</a></div>');
+    $(this).append(floater);
+    $(this).hover(
+        function() {
+            floater.show();
+        },
+        function() {
+            floater.hide();
+        }
+    );
+  });
+});
+
+$(function() {
+    if (document.location.pathname.toLowerCase() === "/workbooks/")
+        $(".local-bar .navigation li:nth(2)").attr("class", "active")
+
+    // workbooks overlay
+    var overlay = $("#wboverlay");
+
+    $(".api-sidebar").stick_in_parent();
+    var workbooks = $(".workbookres a,.workbooks-list a");
+    workbooks.click(function(e) {
+        var a = $(this);
+        var wburl = a.attr("href");
+        var wbtitle = a.text();
+        if (a.attr("title"))
+            wbtitle = a.attr("title");
+        else if (a.attr("alt"))
+            wbtitle = a.attr("alt");
+
+        // reset feedback UI:
+        $("#pos-button").attr("value", window.FeedbackText.LoveIt);
+        $("#neg-button").attr("value", window.FeedbackText.Problem);
+        $("#pos-button").show();
+        $("#neg-button").show();
+        $("#pos-list").hide();
+        $("#neg-list").hide();
+        $("#loc-feedback").hide();
+        $("#submission").hide();
+        $("#thanks").hide ();
+        $("#feedback-input").show();
+
+        // now show the overlay
+        overlay.show();
+        overlay.stick_in_parent();
+
+        overlay.find("#wbtitle").text(wbtitle);
+        overlay.find("#wburl").attr("href", wburl);
+        overlay.find(".feedback").attr("data-feedback", wburl);
+
+        e.preventDefault();
+        e.stopPropagation();
+        return false;
+    });
+
+    $("#wburl").click(function() {
+        $("#wboverlay").hide();
+        return true;
+    });
+
+    $(".wbclose input").click(function() {
+        $("#wboverlay").hide();
+    });
+
+    $(document).on('keyup',function(evt) {
+        if (evt.keyCode == 27) {
+            $("#wboverlay").hide(); 
+        }
+    });
+});
+
+var configureFeedbackSection = function(feedbacknode, extrapath) {
+    var path = document.location.pathname;
+    if (extrapath)
+        path += "#" + extrapath;
+
+
+    // check cookie to see if we should show this
+    var cookie = readCookie(document.location.pathname);
+
+    if (cookie) {
+        feedbacknode.hide();
+        return;
+    }
+
+    // wire up the buttons
+    var sentiment;
+    var configButton = function(btnToShow, btnToHide) {
+        feedbacknode.find("#"+btnToShow+"-button").on("click", function() {
+
+           if (window.PageLocale !== "en-us" && window.IsLocaleAdjusted) {
+               $("#loc-feedback").show();
+               $("#loc-feedback .feedback-list").show(); 
+           }
+
+           var showButton = feedbacknode.find("#"+btnToShow + "-button");
+           if (showButton.attr("value") !== window.FeedbackText.Cancel) {
+                sentiment = btnToShow === "pos";
+                feedbacknode.find("#"+btnToShow+"-list").slideDown();
+                feedbacknode.find("#submission").slideDown();
+                feedbacknode.find("#"+btnToHide+"-button").slideUp();
+                showButton.attr("value", window.FeedbackText.Cancel);
+           }
+           else {
+                showButton.attr("value", btnToShow === "pos" ? window.FeedbackText.LoveIt : window.FeedbackText.Problem);
+
+                feedbacknode.find("#"+btnToShow+"-list").slideUp();
+                feedbacknode.find("#submission").slideUp();
+                feedbacknode.find("#"+btnToHide+"-button").slideDown();
+           }
+        });
+    };
+    configButton("pos", "neg");
+    configButton("neg", "pos");
+
+    // wire up the remaining display
+    feedbacknode.find('#feedback-text').keyup(function() {
+        var textCount = $(this).val().length;
+        var rem = feedbacknode.find("#remaining");
+        rem.text(textCount + "/250");
+        if (textCount > 250) {
+            rem.addClass("red");
+            feedbacknode.find("#submit-feedback").prop("disabled",true);;
+        }
+        else {
+            rem.removeClass("red");
+            feedbacknode.find("#submit-feedback").prop("disabled",false);;
+        }
+    });
+
+    // submit the feedback
+    feedbacknode.find("#submit-feedback").on("click", function() {
+       // retrieve values
+       var radios = $("input[name='sentiment']");
+       var sentimentCategory = $("input[name='sentiment']:checked").val();
+       var translationQuality = $("input[name='loc']:checked").val();
+       var feedbackText = $("#feedback-text").val();
+       var locale = $("#input-locale").val();
+       var data = {
+           sentiment:sentiment,
+           category:sentimentCategory,
+           freetext:feedbackText,
+           referrer: document.referrer,
+           path: document.location.pathname,
+           title: document.title.replace(' - Xamarin',''),
+           translationquality: translationQuality,
+           lang: locale
+       };
+
+        $.ajax({
+            url: "/Feedback/Submit",//"http://localhost:1982/Feedback/Submit",
+            jsonp: "callback",
+            dataType: "jsonp",
+            data: data,
+            success: function( response ) {
+                if (response.success) {
+                    createCookie(path, true, 1);
+                    console.log( "feedback submitted successfully ... thanks!" ); // server response
+                }
+                else {
+                    if (response.message && response.message.length > 0) {
+                        alert(response.message);
+                        feedbacknode.find("#thanks").hide ();
+                        feedbacknode.find("#feedback-input").slideDown();
+                    }
+                }
+            },
+            failure: function(response) {
+                console.log ( response);
+            }
+        });
+
+       // show "thanks" UI
+       feedbacknode.find("#thanks").show ();
+       feedbacknode.find("#feedback-input").slideUp();
+    });
+
+};
+$(function() {
+    // guide feedback functionality
+    var sidebarNode = $(".specs-box .content-feedback");
+    var wboverlayNode = $("#wboverlay .content-feedback");
+
+    configureFeedbackSection(sidebarNode, undefined);
+    configureFeedbackSection(wboverlayNode, "workbook");
+});
+
+});
+})(jq190);
+
+// more tree binding functions
+function addExpandableArrows() {
+    $('.sidebar-container li.expandable').each(function (item) {
+        $(this).not('>span.arrow').prepend('<span class="arrow"></span>');
+    });
+}
+function recalcSidebar() {
+    $(document.body).trigger("sticky_kit:recalc");
+}
+function bindTreeEvents(li) {
+    li.bind('tree_toggle', function(e) {
+
+        e.stopPropagation();
+
+        if ($(this).hasClass('active')) {
+            $(this).trigger('tree_collapse');
+        } else {
+            $(this).trigger('tree_expand');
+        }
+
+    }).bind('tree_collapse', function(e) {
+
+        e.stopPropagation();
+        if ($(this).hasClass('active')) {
+            $(this).removeClass('active').find('> ul').stop(true, true).show().slideUp({
+                duration: 400,
+                complete: recalcSidebar
+            });
+        }
+
+    }).bind('tree_expand', function(e) {
+
+        e.stopPropagation();
+        if (!$(this).hasClass('active')) {
+            $(this).addClass('active').find('> ul').stop(true, true).hide().slideDown({
+                duration: 400,
+                complete: recalcSidebar
+            });
+        }
+
+    });
+
+    $('.sidebar-container li .arrow').on('click', function(e) {
+        var li = $(e.target).parent();
+        li.trigger('tree_toggle');
+        recalcSidebar();
+    });
+}

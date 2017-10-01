@@ -15,18 +15,18 @@ namespace Ct.SubFinder.Mobile.App.Views.Dashboard
         {
             Profiles = new ObservableCollection<Profile>()
             {
-                new Profile{ FirstName = "Profile Works!"},
-                new Profile{ FirstName = "Profile Works!"},
-                new Profile{ FirstName = "Profile Works!"},
-                new Profile{ FirstName = "Profile Works!"},
-                new Profile{ FirstName = "Profile Works!"},
-                new Profile{ FirstName = "Profile Works!"},
-                new Profile{ FirstName = "Profile Works!"},
-                new Profile{ FirstName = "Profile Works!"},
-                new Profile{ FirstName = "Profile Works!"},
-                new Profile{ FirstName = "Profile Works!"},
-                new Profile{ FirstName = "Profile Works!"},
-                new Profile{ FirstName = "Profile Works!"}
+                new Profile{ User = new User { FirstName = "Profile Works!"} },
+                new Profile{ User = new User { FirstName = "Profile Works!"} },
+                new Profile{ User = new User { FirstName = "Profile Works!"} },
+                new Profile{ User = new User { FirstName = "Profile Works!"} },
+                new Profile{ User = new User { FirstName = "Profile Works!"} },
+                new Profile{ User = new User { FirstName = "Profile Works!"} },
+                new Profile{ User = new User { FirstName = "Profile Works!"} },
+                new Profile{ User = new User { FirstName = "Profile Works!"} },
+                new Profile{ User = new User { FirstName = "Profile Works!"} },
+                new Profile{ User = new User { FirstName = "Profile Works!"} },
+                new Profile{ User = new User { FirstName = "Profile Works!"} },
+                new Profile{ User = new User { FirstName = "Profile Works!"} }
             };
 
             ClickMeCommand = new DelegateCommand(OnClickMe);

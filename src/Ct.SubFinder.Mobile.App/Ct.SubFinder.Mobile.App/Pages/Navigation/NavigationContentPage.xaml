@@ -1,15 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-              xmlns:dashboard="clr-namespace:Ct.SubFinder.Mobile.App.Views.Dashboard"
-              xmlns:contacts="clr-namespace:Ct.SubFinder.Mobile.App.Views.Contacts"
-              xmlns:msg="clr-namespace:Ct.SubFinder.Mobile.App.Views.Messages"
-              xmlns:cam="clr-namespace:Ct.SubFinder.Mobile.App.Views.Camera"              
-              xmlns:c="clr-namespace:Ct.SubFinder.Mobile.App.Controls"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"              
              xmlns:vm="clr-namespace:Ct.SubFinder.Mobile.App.Pages.Navigation"
+             xmlns:controls="clr-namespace:CarouselView.FormsPlugin.Abstractions;assembly=CarouselView.FormsPlugin.Abstractions"
              x:Class="Ct.SubFinder.Mobile.App.Pages.Navigation.NavigationContentPage">
     <ContentPage.BindingContext>
-        <vm:NavigationViewModel/>
+        <vm:NavigationContentViewModel/>
     </ContentPage.BindingContext>
     <ContentPage.ToolbarItems>
         <ToolbarItem Name="MenuItem1" Order="Primary" Icon="ic_home_black_24dp.png" Text="Item 1" Priority="0" />
@@ -17,39 +13,27 @@
     </ContentPage.ToolbarItems>
 
     <ContentPage.Content>
-        <Grid>
+        <Grid BackgroundColor="#e3e3e3">
             <Grid.RowDefinitions>
-                <RowDefinition Height="1*"/>
+                <RowDefinition Height="*"/>
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
 
-            <RelativeLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-                <c:CarouselLayout x:Name="Carousel" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"
-                            RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=X, Factor=1}"
-                            RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Y, Factor=1}"
-                            RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1}"
-                            ItemsSource="{Binding Pages}"
-                            SelectedItem="{Binding CurrentPage, Mode=TwoWay}"
-                     >
-                    <c:CarouselLayout.ItemTemplate>
-                        <DataTemplate>
-                            <StackLayout BackgroundColor="{Binding Background}">
-                                <Label Text="{Binding Title}"></Label>
-                            </StackLayout>
-                        </DataTemplate>
-                    </c:CarouselLayout.ItemTemplate>
-                    <!--<c:CarouselLayout.Children>
-                        --><!--<dashboard:DashboardView></dashboard:DashboardView>--><!--
-                        <contacts:ContactsView></contacts:ContactsView>
-                        <msg:MessageView></msg:MessageView>
-                        <cam:CameraView></cam:CameraView>
-                    </c:CarouselLayout.Children>-->
-                </c:CarouselLayout>
-            </RelativeLayout>
-            <!--<c:CarouselTabs Grid.Row="1" BackgroundColor="#e3e3e3"  HeightRequest="50" 
-                            ItemsSource="{Binding Pages}"
-                            SelectedItem="{Binding CurrentPage}"
-                            />-->
+            <controls:CarouselViewControl                 
+                Orientation="Horizontal" 
+                InterPageSpacing="0" 
+                Position="{Binding Position}" 
+                ItemsSource="{Binding Views}" 
+                VerticalOptions="FillAndExpand" 
+                HorizontalOptions="FillAndExpand">
+                <controls:CarouselViewControl.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout VerticalOptions="FillAndExpand" BackgroundColor="Black">
+                            <ContentView Content="{Binding}"/>
+                        </StackLayout>
+                    </DataTemplate>
+                </controls:CarouselViewControl.ItemTemplate>
+            </controls:CarouselViewControl>
 
             <Grid Grid.Row="1" BackgroundColor="#e3e3e3"  HeightRequest="50" >
                 <Grid.ColumnDefinitions>
@@ -65,7 +49,6 @@
                 <Button Command="{Binding SwitchViewCommand}" CommandParameter="4" Image="ic_camera_enhance_black_24dp.png" VerticalOptions="Center" HorizontalOptions="Center" Grid.Column="3" Opacity="0.6" />
                 <Button Command="{Binding SwitchViewCommand}" CommandParameter="5" Image="ic_settings_black_24dp.png" VerticalOptions="Center" HorizontalOptions="Center" Grid.Column="4" Opacity="0.6" />
             </Grid>
-          
         </Grid>
     </ContentPage.Content>
 </ContentPage>

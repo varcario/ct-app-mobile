@@ -11,6 +11,11 @@ using Ct.SubFinder.Mobile.App.State;
 using Ct.SubFinder.Mobile.App.Agents.Profile;
 using Ct.SubFinder.Mobile.App.Agents.User;
 using System.Net.Http;
+using Ct.SubFinder.Mobile.App.Views.Camera;
+using System.Collections.Generic;
+using Ct.SubFinder.Mobile.App.Views.Dashboard;
+using Ct.SubFinder.Mobile.App.Views.Messages;
+using Ct.SubFinder.Mobile.App.Views.Contacts;
 
 namespace Ct.SubFinder.Mobile.App
 {
@@ -45,15 +50,15 @@ namespace Ct.SubFinder.Mobile.App
             Container.RegisterTypeForNavigation<Pages.NewProfile.NewProfileContentPage, Pages.NewProfile.NewProfileViewModel>();
             Container.RegisterTypeForNavigation<Pages.SearchRadius.SearchRadiusContentPage, Pages.SearchRadius.SearchRadiusViewModel>();
 
-            Container.RegisterTypeForNavigation<Pages.Navigation.NavigationContentPage, Pages.Navigation.NavigationViewModel>();
+            Container.RegisterTypeForNavigation<Pages.Navigation.NavigationContentPage, Pages.Navigation.NavigationContentViewModel>();
             Container.RegisterTypeForNavigation<Pages.Navigation.NavigationCarouselPage, Pages.Navigation.NavigationCarouselViewModel>();
             Container.RegisterTypeForNavigation<Pages.Navigation.NavigationTabbedPage, Pages.Navigation.NavigationTabbedViewModel>();
             Container.RegisterTypeForNavigation<Pages.Navigation.NavigationMasterDetailPage, Pages.Navigation.NavigationMasterDetailViewModel>();
-
+           
             Container.RegisterType<IAppState<AppState, AppStateEvent>, AppStateObservable>(
                 new InjectionConstructor(
-                    Container.Resolve<AppState>()
-                ));
+                        Container.Resolve<AppState>()
+                    ));
             Container.RegisterType<IPerformanceTrace, PerformanceTrace>();
             
             Container.RegisterType<IAgent<AppState>, GetSessionAgent>("GetSessionAgent");

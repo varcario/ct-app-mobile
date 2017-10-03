@@ -23,6 +23,7 @@ namespace Ct.SubFinder.Mobile.App.iOS
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
             global::Xamarin.Forms.Forms.Init();
+            global::CarouselView.FormsPlugin.iOS.CarouselViewRenderer.Init();
             LoadApplication(new App());
 
             return base.FinishedLaunching(app, options);

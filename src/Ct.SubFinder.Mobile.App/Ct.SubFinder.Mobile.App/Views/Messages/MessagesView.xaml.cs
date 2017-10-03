@@ -10,9 +10,9 @@ using Xamarin.Forms.Xaml;
 namespace Ct.SubFinder.Mobile.App.Views.Messages
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class MessageView : ContentView
+    public partial class MessagesView : ContentView
     {
-        public MessageView()
+        public MessagesView()
         {
             InitializeComponent();
         }

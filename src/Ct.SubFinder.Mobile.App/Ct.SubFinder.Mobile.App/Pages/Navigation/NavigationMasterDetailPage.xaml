@@ -11,12 +11,4 @@
             </x:Arguments>
         </NavigationPage>
     </MasterDetailPage.Master>
-    <MasterDetailPage.Detail>
-        <!--<pages:NavigationContentPage/>-->
-        <NavigationPage>
-            <x:Arguments>
-                <pages:NavigationContentPage/>
-            </x:Arguments>
-        </NavigationPage>
-    </MasterDetailPage.Detail>
 </MasterDetailPage>

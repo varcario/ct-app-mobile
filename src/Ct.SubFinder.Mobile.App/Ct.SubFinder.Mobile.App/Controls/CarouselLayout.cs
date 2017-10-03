@@ -27,9 +27,10 @@ namespace Ct.SubFinder.Mobile.App.Controls
             _stack = new StackLayout
             {
                 Orientation = StackOrientation.Horizontal,
-                Spacing = 0
+                Spacing = 0                
             };
 
+            
             Content = _stack;
         }
 
@@ -51,10 +52,10 @@ namespace Ct.SubFinder.Mobile.App.Controls
 
             _layingOutChildren = true;
             foreach (var child in Children)
-            {
+            {                          
                 child.WidthRequest = width;
             }
-
+           
             _layingOutChildren = false;
         }
 

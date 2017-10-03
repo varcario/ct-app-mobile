@@ -90,7 +90,7 @@
       <DependentUpon>NavigationTabbedPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\Navigation\NavigationTabbedViewModel.cs" />
-    <Compile Include="Pages\Navigation\NavigationViewModel.cs" />
+    <Compile Include="Pages\Navigation\NavigationContentViewModel.cs" />
     <Compile Include="Pages\NewProfile\NewProfileContentPage.xaml.cs">
       <DependentUpon>NewProfileContentPage.xaml</DependentUpon>
     </Compile>
@@ -120,10 +120,14 @@
       <DependentUpon>DashboardView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Dashboard\DashboardViewModel.cs" />
-    <Compile Include="Views\Messages\MessageView.xaml.cs">
-      <DependentUpon>MessageView.xaml</DependentUpon>
+    <Compile Include="Views\Messages\MessagesView.xaml.cs">
+      <DependentUpon>MessagesView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Messages\MessageViewModel.cs" />
+    <Compile Include="Views\Messages\MessagesViewModel.cs" />
+    <Compile Include="Views\Settings\SettingsView.xaml.cs">
+      <DependentUpon>SettingsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Settings\SettingsViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="App.xaml">
@@ -180,6 +184,9 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="CarouselView.FormsPlugin.Abstractions, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\CarouselView.FormsPlugin.4.4.3\lib\portable-net45+netcore45+wpa81+wp8+MonoAndroid10+Xamarin.iOS10\CarouselView.FormsPlugin.Abstractions.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\..\packages\CommonServiceLocator.1.3\lib\portable-net4+sl5+netcore45+wpa81+wp8\Microsoft.Practices.ServiceLocation.dll</HintPath>
     </Reference>
@@ -242,7 +249,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Views\Messages\MessageView.xaml">
+    <EmbeddedResource Include="Views\Messages\MessagesView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
@@ -279,6 +286,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Pages\Navigation\NavigationContentPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\Settings\SettingsView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

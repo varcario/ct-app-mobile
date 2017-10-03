@@ -20,6 +20,7 @@ namespace Ct.SubFinder.Mobile.App.Droid
             base.OnCreate(bundle);
 
             global::Xamarin.Forms.Forms.Init(this, bundle);
+            global::CarouselView.FormsPlugin.Android.CarouselViewRenderer.Init();
             LoadApplication(new App());
         }
     }

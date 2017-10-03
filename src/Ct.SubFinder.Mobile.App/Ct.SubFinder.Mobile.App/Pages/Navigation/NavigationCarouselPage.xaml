@@ -42,7 +42,7 @@
                 <c:CarouselLayout.Children>
                     <!--<dashboard:DashboardView></dashboard:DashboardView>-->
                     <contacts:ContactsView></contacts:ContactsView>
-                    <msg:MessageView></msg:MessageView>
+                    <msg:MessagesView></msg:MessagesView>
                     <cam:CameraView></cam:CameraView>
                 </c:CarouselLayout.Children>
             </c:CarouselLayout>

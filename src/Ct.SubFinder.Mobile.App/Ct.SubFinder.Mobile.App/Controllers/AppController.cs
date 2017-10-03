@@ -120,7 +120,7 @@ namespace Ct.SubFinder.Mobile.App.Controllers
 
         public void NavigateToMain()
         {
-            _navigationService.NavigateAsync("app:///NavigationMasterDetailPage/NavigationPage/DashboardContentPage");
+            _navigationService.NavigateAsync("app:///NavigationMasterDetailPage/NavigationPage/NavigationContentPage");
             //_navigationService.NavigateAsync("app:///NavigationTabbedPage");
         }
 
@@ -143,6 +143,8 @@ namespace Ct.SubFinder.Mobile.App.Controllers
         {
             _navigationService.NavigateAsync("app:///NavigationMasterDetailPage/NavigationPage/CameraContentPage");
             //_navigationService.NavigateAsync("app:///NavigationTabbedPage");
+
+            //_navigationService.NavigateAsync("app:///NavigationMasterDetailPage/NavigationPage/NavigationCarouselPage");
         }
     }
 }

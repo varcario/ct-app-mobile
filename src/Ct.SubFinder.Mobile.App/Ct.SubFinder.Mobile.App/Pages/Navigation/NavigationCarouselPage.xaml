@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<CarouselPage xmlns="http://xamarin.com/schemas/2014/forms"
+              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+              x:Class="Ct.SubFinder.Mobile.App.Pages.Navigation.NavigationCarouselPage"
+              xmlns:dashboard="clr-namespace:Ct.SubFinder.Mobile.App.Views.Dashboard"
+              xmlns:contacts="clr-namespace:Ct.SubFinder.Mobile.App.Views.Contacts"
+              xmlns:msg="clr-namespace:Ct.SubFinder.Mobile.App.Views.Messages"
+              xmlns:cam="clr-namespace:Ct.SubFinder.Mobile.App.Views.Camera"              
+              xmlns:c="clr-namespace:Ct.SubFinder.Mobile.App.Controls">
+    <CarouselPage.ToolbarItems>
+        <ToolbarItem Name="MenuItem1" Order="Primary" Icon="ic_home_black_24dp.png" Text="Item 1" Priority="0" />
+        <ToolbarItem Name="MenuItem2" Order="Primary" Icon="ic_contacts_black_24dp.png" Text="Item 2" Priority="1" />
+    </CarouselPage.ToolbarItems>
+    <ContentPage>
+        <StackLayout>
+            <Label Text="Carousel Page Works!" />
+        </StackLayout>
+    </ContentPage>
+    <ContentPage>
+        <StackLayout>
+            <Label Text="Carousel Page2 Works!" />
+        </StackLayout>
+    </ContentPage>
+    <ContentPage>
+        <StackLayout>
+            <Label Text="Carousel Page3 Works!" />
+        </StackLayout>
+    </ContentPage>
+    <ContentPage>
+        <StackLayout>
+            <Label Text="Carousel Page4 Works!" />
+        </StackLayout>
+    </ContentPage>
+    <ContentPage>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <c:CarouselLayout Grid.Row="0">
+                <c:CarouselLayout.Children>
+                    <!--<dashboard:DashboardView></dashboard:DashboardView>-->
+                    <contacts:ContactsView></contacts:ContactsView>
+                    <msg:MessageView></msg:MessageView>
+                    <cam:CameraView></cam:CameraView>
+                </c:CarouselLayout.Children>
+            </c:CarouselLayout>
+            
+            <Grid Grid.Row="1" BackgroundColor="#e3e3e3" HeightRequest="50">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Image Source="ic_home_black_24dp.png" VerticalOptions="Center" HorizontalOptions="Center" />
+                <Image Source="ic_message_black_24dp.png" VerticalOptions="Center" HorizontalOptions="Center" Grid.Column="1" Opacity="0.6" />
+                <Image Source="ic_contacts_black_24dp.png" VerticalOptions="Center" HorizontalOptions="Center" Grid.Column="2" Opacity="0.6" />
+                <Image Source="ic_camera_enhance_black_24dp.png" VerticalOptions="Center" HorizontalOptions="Center" Grid.Column="3" Opacity="0.6" />
+                <Image Source="ic_settings_black_24dp.png" VerticalOptions="Center" HorizontalOptions="Center" Grid.Column="4" Opacity="0.6" />
+            </Grid>
+        </Grid>
+    </ContentPage>
+</CarouselPage>

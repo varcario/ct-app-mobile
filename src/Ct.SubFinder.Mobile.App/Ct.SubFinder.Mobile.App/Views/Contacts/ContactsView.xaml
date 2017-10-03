@@ -4,7 +4,7 @@
              x:Class="Ct.SubFinder.Mobile.App.Views.Contacts.ContactsView"
              BackgroundColor="#E6E6E6">
   <ContentView.Content>
-      <StackLayout>
+      <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
           <Label Text="Contacts Works!" />
       </StackLayout>
   </ContentView.Content>

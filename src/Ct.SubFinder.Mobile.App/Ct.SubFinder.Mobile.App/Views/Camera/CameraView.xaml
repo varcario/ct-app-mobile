@@ -4,7 +4,7 @@
              x:Class="Ct.SubFinder.Mobile.App.Views.Camera.CameraView"
              BackgroundColor="#000000">
   <ContentView.Content>
-      <StackLayout>
+      <StackLayout HorizontalOptions="CenterAndExpand">
           <Label Text="Camera Works!" />
       </StackLayout>
   </ContentView.Content>

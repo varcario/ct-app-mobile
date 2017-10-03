@@ -3,7 +3,16 @@
                xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                xmlns:b="clr-namespace:Prism.Behaviors;assembly=Prism.Forms"
                x:Class="Ct.SubFinder.Mobile.App.Pages.Navigation.NavigationMasterDetailPageMaster"
-               Title="Master">
+              xmlns:dashboard="clr-namespace:Ct.SubFinder.Mobile.App.Views.Dashboard"
+              xmlns:contacts="clr-namespace:Ct.SubFinder.Mobile.App.Views.Contacts"
+              xmlns:msg="clr-namespace:Ct.SubFinder.Mobile.App.Views.Messages"
+              xmlns:cam="clr-namespace:Ct.SubFinder.Mobile.App.Views.Camera"              
+              xmlns:c="clr-namespace:Ct.SubFinder.Mobile.App.Controls"
+               Title="Menu">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Name="MenuItem1" Order="Primary" Icon="ic_home_black_24dp.png" Text="Item 1" Priority="0" />
+        <ToolbarItem Name="MenuItem2" Order="Primary" Icon="ic_contacts_black_24dp.png" Text="Item 2" Priority="1" />
+    </ContentPage.ToolbarItems>
     <StackLayout>
         <ListView x:Name="MenuItemsListView"
                 SeparatorVisibility="None"

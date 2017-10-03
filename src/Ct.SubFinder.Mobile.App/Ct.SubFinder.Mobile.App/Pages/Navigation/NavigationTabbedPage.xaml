@@ -9,9 +9,9 @@
             x:Class="Ct.SubFinder.Mobile.App.Pages.Navigation.NavigationTabbedPage">
     
     <!--Pages can be added as references or inline-->
-    <dashboard:DashboardContentPage Title="DASHBOARD"/>
-    <contacts:ContactsContentPage Title="CONTACTS"/>
-    <messages:MessagesContentPage Title="MESSAGES"/>
-    <camera:CameraContentPage Title="CAMERA"/>
+    <dashboard:DashboardContentPage Icon="ic_home_black_24dp.png"/>
+    <contacts:ContactsContentPage Icon="ic_contacts_black_24dp.png"/>
+    <messages:MessagesContentPage Icon="ic_message_black_24dp.png"/>
+    <camera:CameraContentPage Icon="ic_camera_enhance_black_24dp.png"/>
 
 </TabbedPage>

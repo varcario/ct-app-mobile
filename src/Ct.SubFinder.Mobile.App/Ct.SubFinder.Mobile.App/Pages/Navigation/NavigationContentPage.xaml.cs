@@ -7,14 +7,14 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace Ct.SubFinder.Mobile.App.Views.Contacts
+namespace Ct.SubFinder.Mobile.App.Pages.Navigation
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class ContactsView : ContentView
+    public partial class NavigationContentPage : ContentPage
     {
-        public ContactsView()
+        public NavigationContentPage()
         {
-            InitializeComponent();            
+            InitializeComponent();
         }
     }
 }

@@ -24,6 +24,8 @@ namespace Ct.SubFinder.Mobile.App
             InitializeComponent();            
         }
 
+        #region Override Methods
+
         protected override void RegisterTypes()
         {
             Container.RegisterInstance(new HttpClient());
@@ -43,6 +45,8 @@ namespace Ct.SubFinder.Mobile.App
             Container.RegisterTypeForNavigation<Pages.NewProfile.NewProfileContentPage, Pages.NewProfile.NewProfileViewModel>();
             Container.RegisterTypeForNavigation<Pages.SearchRadius.SearchRadiusContentPage, Pages.SearchRadius.SearchRadiusViewModel>();
 
+            Container.RegisterTypeForNavigation<Pages.Navigation.NavigationContentPage, Pages.Navigation.NavigationViewModel>();
+            Container.RegisterTypeForNavigation<Pages.Navigation.NavigationCarouselPage, Pages.Navigation.NavigationCarouselViewModel>();
             Container.RegisterTypeForNavigation<Pages.Navigation.NavigationTabbedPage, Pages.Navigation.NavigationTabbedViewModel>();
             Container.RegisterTypeForNavigation<Pages.Navigation.NavigationMasterDetailPage, Pages.Navigation.NavigationMasterDetailViewModel>();
 
@@ -79,7 +83,8 @@ namespace Ct.SubFinder.Mobile.App
            
 
             _appController = Container.Resolve<AppController>();
-        }
+        }        
+
         protected override void OnStart()
         {            
             // Handle when your app starts
@@ -97,5 +102,7 @@ namespace Ct.SubFinder.Mobile.App
             // Handle when your app resumes
             _appController.Resume();
         }
+
+        #endregion
     }
 }

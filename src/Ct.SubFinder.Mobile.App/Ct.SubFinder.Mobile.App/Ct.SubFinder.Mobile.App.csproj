@@ -45,6 +45,8 @@
     <Compile Include="Agents\Session\GetSessionAgent.cs" />
     <Compile Include="Agents\Session\PostSessionAgent.cs" />
     <Compile Include="Agents\User\PostUserAgent.cs" />
+    <Compile Include="Controls\CarouselLayout.cs" />
+    <Compile Include="Controls\CarouselTabs.cs" />
     <Compile Include="Pages\Camera\CameraContentPage.xaml.cs">
       <DependentUpon>CameraContentPage.xaml</DependentUpon>
     </Compile>
@@ -69,6 +71,13 @@
       <DependentUpon>MessagesContentPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\Messages\MessagesViewModel.cs" />
+    <Compile Include="Pages\Navigation\NavigationCarouselPage.xaml.cs">
+      <DependentUpon>NavigationCarouselPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Navigation\NavigationCarouselViewModel.cs" />
+    <Compile Include="Pages\Navigation\NavigationContentPage.xaml.cs">
+      <DependentUpon>NavigationContentPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Navigation\NavigationMasterDetailPage.xaml.cs">
       <DependentUpon>NavigationMasterDetailPage.xaml</DependentUpon>
     </Compile>
@@ -81,6 +90,7 @@
       <DependentUpon>NavigationTabbedPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\Navigation\NavigationTabbedViewModel.cs" />
+    <Compile Include="Pages\Navigation\NavigationViewModel.cs" />
     <Compile Include="Pages\NewProfile\NewProfileContentPage.xaml.cs">
       <DependentUpon>NewProfileContentPage.xaml</DependentUpon>
     </Compile>
@@ -257,6 +267,18 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Pages\Navigation\NavigationMasterDetailPageMaster.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Pages\Navigation\NavigationCarouselPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Pages\Navigation\NavigationContentPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

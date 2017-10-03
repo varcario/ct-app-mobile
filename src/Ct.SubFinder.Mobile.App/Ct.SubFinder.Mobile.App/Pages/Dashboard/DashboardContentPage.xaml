@@ -3,35 +3,52 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"       
              xmlns:vm="clr-namespace:Ct.SubFinder.Mobile.App.Pages.Dashboard"
              xmlns:b="clr-namespace:Prism.Behaviors;assembly=Prism.Forms"
-             x:Class="Ct.SubFinder.Mobile.App.Pages.Dashboard.DashboardContentPage"
-             Title="Dashboard">
+             x:Class="Ct.SubFinder.Mobile.App.Pages.Dashboard.DashboardContentPage">
     <ContentPage.BindingContext>
         <vm:DashboardViewModel/>
     </ContentPage.BindingContext>
     <ContentPage.Content>
-        <StackLayout Spacing="0">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
             <Grid Padding="0,10,0,10" BackgroundColor="#DDDDDD">
                 <Label Grid.Row="0" Text="NEWS FEED" HorizontalOptions="Start" VerticalOptions="Center" FontAttributes="Bold" FontFamily="Arial" FontSize="Large"/>
             </Grid>
-            <Grid>
-            <ScrollView VerticalOptions="Fill">
+            
+            <ScrollView Grid.Row="1">
                 <ListView 
                     ItemsSource="{Binding Articles}">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
-                            <StackLayout Padding="5" Orientation="Horizontal">
-                                <BoxView BackgroundColor="Blue"/>
-                                <StackLayout Spacing="0" VerticalOptions="Center">
-                                    <Label Text="{Binding Description}"/>
+                                <StackLayout Padding="5" Orientation="Horizontal">
+                                    <BoxView BackgroundColor="Blue"/>
+                                    <StackLayout Spacing="0" VerticalOptions="Center">
+                                        <Label Text="{Binding Description}"/>
+                                    </StackLayout>
                                 </StackLayout>
-                            </StackLayout>
                             </ViewCell>
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
             </ScrollView>
-            </Grid>
-        </StackLayout>
+            <!--<Grid Grid.Row="2" BackgroundColor="#e3e3e3" HeightRequest="50">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Image Source="ic_home_black_24dp.png" VerticalOptions="Center" HorizontalOptions="Center" />
+                <Image Source="ic_message_black_24dp.png" VerticalOptions="Center" HorizontalOptions="Center" Grid.Column="1" Opacity="0.6" />
+                <Image Source="ic_contacts_black_24dp.png" VerticalOptions="Center" HorizontalOptions="Center" Grid.Column="2" Opacity="0.6" />
+                <Image Source="ic_settings_black_24dp.png" VerticalOptions="Center" HorizontalOptions="Center" Grid.Column="3" Opacity="0.6" />
+                <Image Source="ic_camera_enhance_black_24dp.png" VerticalOptions="Center" HorizontalOptions="Center" Grid.Column="4" Opacity="0.6" />
+            </Grid>-->
+        </Grid>
     </ContentPage.Content>
 </ContentPage>

@@ -2,13 +2,21 @@
 <MasterDetailPage xmlns="http://xamarin.com/schemas/2014/forms"
                xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                x:Class="Ct.SubFinder.Mobile.App.Pages.Navigation.NavigationMasterDetailPage"
-               xmlns:menu="clr-namespace:Ct.SubFinder.Mobile.App.Pages.Navigation"
-               xmlns:vm="clr-namespace:Ct.SubFinder.Mobile.App.Pages.Dashboard"
-               xmlns:pages="clr-namespace:Ct.SubFinder.Mobile.App.Pages.Dashboard"
-               IsPresented="{Binding IsFlyoutOpen, Mode=TwoWay}"
-               >
+               xmlns:pages="clr-namespace:Ct.SubFinder.Mobile.App.Pages.Navigation"               
+               IsPresented="{Binding IsFlyoutOpen, Mode=TwoWay}">
     <MasterDetailPage.Master>
-        <menu:NavigationMasterDetailPageMaster/>
+        <NavigationPage Title="Menu" Icon="ic_home_black_24dp.png">
+            <x:Arguments>
+                <pages:NavigationMasterDetailPageMaster/>
+            </x:Arguments>
+        </NavigationPage>
     </MasterDetailPage.Master>
-   
+    <MasterDetailPage.Detail>
+        <!--<pages:NavigationContentPage/>-->
+        <NavigationPage>
+            <x:Arguments>
+                <pages:NavigationContentPage/>
+            </x:Arguments>
+        </NavigationPage>
+    </MasterDetailPage.Detail>
 </MasterDetailPage>

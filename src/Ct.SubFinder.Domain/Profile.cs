@@ -8,5 +8,7 @@ namespace Ct.SubFinder.Domain
         public string Company { get; set; }
         public string ZipCode { get; set; }
         public double Radius { get; set; }
+        public string ImageUrl { get; set; }
+        public string Location { get; set; }
     }
 }

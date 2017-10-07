@@ -32,35 +32,8 @@
         </StackLayout>
     </ContentPage>
     <ContentPage>
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="Auto"/>
-            </Grid.RowDefinitions>
-
-            <c:CarouselLayout Grid.Row="0">
-                <c:CarouselLayout.Children>
-                    <!--<dashboard:DashboardView></dashboard:DashboardView>-->
-                    <contacts:ContactsView></contacts:ContactsView>
-                    <msg:MessagesView></msg:MessagesView>
-                    <cam:CameraView></cam:CameraView>
-                </c:CarouselLayout.Children>
-            </c:CarouselLayout>
-            
-            <Grid Grid.Row="1" BackgroundColor="#e3e3e3" HeightRequest="50">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
-                <Image Source="ic_home_black_24dp.png" VerticalOptions="Center" HorizontalOptions="Center" />
-                <Image Source="ic_message_black_24dp.png" VerticalOptions="Center" HorizontalOptions="Center" Grid.Column="1" Opacity="0.6" />
-                <Image Source="ic_contacts_black_24dp.png" VerticalOptions="Center" HorizontalOptions="Center" Grid.Column="2" Opacity="0.6" />
-                <Image Source="ic_camera_enhance_black_24dp.png" VerticalOptions="Center" HorizontalOptions="Center" Grid.Column="3" Opacity="0.6" />
-                <Image Source="ic_settings_black_24dp.png" VerticalOptions="Center" HorizontalOptions="Center" Grid.Column="4" Opacity="0.6" />
-            </Grid>
-        </Grid>
+        <StackLayout>
+            <Label Text="Carousel Page5 Works!" />
+        </StackLayout>
     </ContentPage>
 </CarouselPage>

@@ -45,8 +45,6 @@
     <Compile Include="Agents\Session\GetSessionAgent.cs" />
     <Compile Include="Agents\Session\PostSessionAgent.cs" />
     <Compile Include="Agents\User\PostUserAgent.cs" />
-    <Compile Include="Controls\CarouselLayout.cs" />
-    <Compile Include="Controls\CarouselTabs.cs" />
     <Compile Include="Pages\Camera\CameraContentPage.xaml.cs">
       <DependentUpon>CameraContentPage.xaml</DependentUpon>
     </Compile>

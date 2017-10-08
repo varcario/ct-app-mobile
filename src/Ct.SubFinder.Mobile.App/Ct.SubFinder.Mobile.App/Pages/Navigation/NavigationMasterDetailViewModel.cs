@@ -54,7 +54,7 @@ namespace Ct.SubFinder.Mobile.App.Pages.Navigation
 
             MenuItems = new ObservableCollection<NavigationMasterDetailPageMenuItem>(new[]
             {
-                      new NavigationMasterDetailPageMenuItem { MenuId = 0, Title = "Dashboard", RouteAction = _appController.NavigateToDashboard },
+                      new NavigationMasterDetailPageMenuItem { MenuId = 0, Title = "Home", RouteAction = _appController.NavigateToMain },
                       new NavigationMasterDetailPageMenuItem { MenuId = 1, Title = "Contacts", RouteAction = _appController.NavigateToContacts },
                       new NavigationMasterDetailPageMenuItem { MenuId = 2, Title = "Messages", RouteAction = _appController.NavigateToMessages },
                       new NavigationMasterDetailPageMenuItem { MenuId = 3, Title = "Camera", RouteAction = _appController.NavigateToCamera },

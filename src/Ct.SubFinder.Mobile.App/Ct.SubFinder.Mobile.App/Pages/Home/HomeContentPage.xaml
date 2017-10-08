@@ -2,22 +2,46 @@
 
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Ct.SubFinder.Mobile.App.Pages.Home.HomeContentPage">
+             x:Class="Ct.SubFinder.Mobile.App.Pages.Home.HomeContentPage"             
+             Title="{Binding Title}">
     <ContentPage.Content>
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="50*"/>
-                <RowDefinition Height="50*"/>
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="20*"/>
-                <ColumnDefinition Width="60*"/>
-                <ColumnDefinition Width="20*"/>
-            </Grid.ColumnDefinitions>
-            <StackLayout Grid.Row="1"  Grid.Column="1" VerticalOptions="Center">
-                <Button Text="Login In" Command="{Binding LogInCommand}" Margin="0,0,0,35"  />
-                <Button Text="Sign Up" Command="{Binding SignUpCommand}" />
+        <StackLayout Margin="30" Spacing="30" HorizontalOptions="Center">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <BoxView Grid.ColumnSpan="2" Style="{StaticResource BlueBoxViewOuterStyle}"/>
+                <BoxView Grid.ColumnSpan="2" Style="{StaticResource BlueBoxViewInnerStyle}"/>
+                <Image Grid.Column="0" Source="ic_sub_finder_normal_24dp.png" HorizontalOptions="Center"/>
+                <Button Grid.Column="1" Text="Create a Sub Finder Account" Command="{Binding SignUpCommand}" Style="{StaticResource BlueButtonStyle}"/>
+            </Grid>
+
+            <Label Text="or Sign in with an existing Sub Finder Account" HorizontalOptions="Center" FontSize="Medium"/>
+
+            <StackLayout>
+                <Label Text="Email" TextColor="{StaticResource PrimaryTextColor}" FontSize="Medium"/>
+                <Grid>
+                    <BoxView Style="{StaticResource DarkBoxViewOuterStyle}"/>
+                    <BoxView Style="{StaticResource DarkBoxViewInnerStyle}"/>
+                    <Entry Text="{Binding EmailAddress}" Style="{StaticResource PrimaryEntryStyle}"/>
+                </Grid>
+                <Label Text="Password" TextColor="{StaticResource PrimaryTextColor}" FontSize="Medium"/>
+                <Grid>
+                    <BoxView Style="{StaticResource DarkBoxViewOuterStyle}"/>
+                    <BoxView Style="{StaticResource DarkBoxViewInnerStyle}"/>
+                    <Entry Text="{Binding Password}" TextColor="{StaticResource PrimaryTextColor}" IsPassword="True" />
+                </Grid>
             </StackLayout>
-        </Grid>
+
+            <StackLayout>
+                <Grid>
+                    <BoxView Style="{StaticResource GreenBoxViewOuterStyle}"/>
+                    <BoxView Style="{StaticResource GreenBoxViewInnerStyle}"/>
+                    <Button Text="Sign in" Command="{Binding SignInCommand}" Style="{StaticResource GreenButtonStyle}"/>
+                </Grid>
+                <Button Text="I forgot my password" Command="{Binding ForgotPasswordCommand}" Style="{StaticResource LinkButtonStyle}"/>
+            </StackLayout>
+        </StackLayout>
     </ContentPage.Content>
 </ContentPage>

@@ -108,6 +108,11 @@ namespace Ct.SubFinder.Mobile.App.Controllers
             _navigationService.NavigateAsync("app:///NavigationPage/HomeContentPage/SignUpContentPage");
         }
 
+        public void NavigateToForgotPassword()
+        {
+
+        }
+
         public void NavigateToNewAccount()
         {
             _navigationService.NavigateAsync("app:///NavigationPage/HomeContentPage/SignUpContentPage/NewProfileContentPage");

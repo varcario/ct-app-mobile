@@ -11,11 +11,6 @@ using Ct.SubFinder.Mobile.App.State;
 using Ct.SubFinder.Mobile.App.Agents.Profile;
 using Ct.SubFinder.Mobile.App.Agents.User;
 using System.Net.Http;
-using Ct.SubFinder.Mobile.App.Views.Camera;
-using System.Collections.Generic;
-using Ct.SubFinder.Mobile.App.Views.Dashboard;
-using Ct.SubFinder.Mobile.App.Views.Messages;
-using Ct.SubFinder.Mobile.App.Views.Contacts;
 
 namespace Ct.SubFinder.Mobile.App
 {

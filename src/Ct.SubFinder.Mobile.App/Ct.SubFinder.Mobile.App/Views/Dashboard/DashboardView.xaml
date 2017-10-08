@@ -2,39 +2,48 @@
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:vm="clr-namespace:Ct.SubFinder.Mobile.App.Views.Dashboard"
-             x:Class="Ct.SubFinder.Mobile.App.Views.Dashboard.DashboardView"             
-             BackgroundColor="#E6E6E6">
+             xmlns:b="clr-namespace:Prism.Behaviors;assembly=Prism.Forms"
+             x:Class="Ct.SubFinder.Mobile.App.Views.Dashboard.DashboardView">
     <ContentView.BindingContext>
         <vm:DashboardViewModel/>
     </ContentView.BindingContext>
     <ContentView.Content>
         <StackLayout>
-            <SearchBar x:Name="searchBar" Placeholder="Enter your a trade skill" SearchCommand="{Binding SearchCommand}" SearchCommandParameter="{Binding Source={x:Reference searchBar}, Path=Text}" />
-            <ScrollView VerticalOptions="FillAndExpand">
-                <ListView 
-                    HasUnevenRows="true" 
-                    ItemsSource="{Binding Profiles}">
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <ViewCell>
-                                <Grid Padding="10">
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="Auto" />
-                                        <RowDefinition Height="*" />
-                                    </Grid.RowDefinitions>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="Auto" />
-                                        <ColumnDefinition Width="*" />
-                                    </Grid.ColumnDefinitions>
-                                    <Image Grid.RowSpan="2" Source="{Binding ImageUrl}" Aspect="AspectFill" HeightRequest="60" WidthRequest="60" />
-                                    <Label Grid.Column="1" Text="{Binding User.FirstName}" Style="{DynamicResource TitleStyle}" />
-                                    <Label Grid.Row="1" Grid.Column="1" Text="{Binding Location}" VerticalOptions="End" Style="{DynamicResource SubtitleTextStyle}" />
-                                </Grid>
-                            </ViewCell>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
-            </ScrollView>
+            <Grid Margin="10">
+                <BoxView Style="{StaticResource DarkBoxViewOuterStyle}" BackgroundColor="#007ACC"/>
+                <BoxView Style="{StaticResource DarkBoxViewInnerStyle}"/>
+                <Entry x:Name="searchBar" Placeholder="Type a Skill or Trade" Style="{StaticResource PrimaryEntryStyle}" >
+                    <Entry.Behaviors>
+                        <b:EventToCommandBehavior EventName="TextChanged" Command="{Binding SearchCommand}" CommandParameter="{Binding Source={x:Reference searchBar}, Path=Text}"/>
+                    </Entry.Behaviors>
+                </Entry>
+            </Grid>
+
+            <ListView 
+                HasUnevenRows="true" 
+                VerticalOptions="FillAndExpand"
+                ItemsSource="{Binding Profiles}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid Padding="10">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="*" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Image Grid.RowSpan="2" Source="{Binding ImageUrl}" Aspect="AspectFill" HeightRequest="60" WidthRequest="60" />
+                                <Label Grid.Column="1" Text="{Binding User.FirstName}" Style="{DynamicResource TitleStyle}" />
+                                <Label Grid.Row="1" Grid.Column="1" Text="{Binding Location}" VerticalOptions="End" Style="{DynamicResource SubtitleTextStyle}" />
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
         </StackLayout>
     </ContentView.Content>
 </ContentView>

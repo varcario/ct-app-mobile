@@ -5,6 +5,75 @@
                        x:Class="Ct.SubFinder.Mobile.App.App">
     <Application.Resources>
         <ResourceDictionary>
+
+            <Color x:Key="PrimaryColor">#33363F</Color>
+            <Color x:Key="PrimaryLightColor">#3E424E</Color>
+            <Color x:Key="PrimaryDarkColor">#1C1E23</Color>
+            <Color x:Key="PrimaryTextColor">#B6B6B6</Color>
+            <Color x:Key="ButtonTextColor">#C2C7D0</Color>
+            <Color x:Key="LinkButtonTextColor">#90BECF</Color>
+            <Color x:Key="BlueBoxViewOuterColor">#122B40</Color>
+            <Color x:Key="BlueBoxViewInnerColor">#384665</Color>
+            <Color x:Key="GreenBoxViewOuterColor">#406148</Color>
+            <Color x:Key="GreenBoxViewInnerColor">#374241</Color>
+            <Color x:Key="DarkBoxViewOuterColor">#383B42</Color>
+            <Color x:Key="DarkBoxViewInnerColor">#282B32</Color>
+
+            <Style TargetType="ContentPage">
+                <Setter Property="BackgroundColor" Value="{StaticResource PrimaryColor}"/>
+            </Style>
+            <Style TargetType="Grid">
+                <Setter Property="BackgroundColor" Value="{StaticResource PrimaryColor}"/>
+            </Style>
+            <Style TargetType="Label">
+                <Setter Property="TextColor" Value="{StaticResource PrimaryTextColor}"/>
+            </Style>
+
+            <Style TargetType="NavigationPage">
+                <Setter Property="BarBackgroundColor" Value="{StaticResource PrimaryLightColor}"/>
+                <Setter Property="BarTextColor" Value="{StaticResource PrimaryTextColor}"/>
+                <Setter Property="BackgroundColor" Value="{StaticResource PrimaryColor}"/>
+            </Style>
+            <Style x:Key="BlueBoxViewOuterStyle"  TargetType="BoxView">
+                <Setter Property="Margin" Value="-1"/>
+                <Setter Property="BackgroundColor" Value="{StaticResource BlueBoxViewOuterColor}"/>
+            </Style>
+            <Style x:Key="BlueBoxViewInnerStyle"  TargetType="BoxView">
+                <Setter Property="BackgroundColor" Value="{StaticResource BlueBoxViewInnerColor}"/>
+            </Style>
+            <Style x:Key="GreenBoxViewOuterStyle"  TargetType="BoxView">
+                <Setter Property="Margin" Value="-1"/>
+                <Setter Property="BackgroundColor" Value="{StaticResource GreenBoxViewOuterColor}"/>
+            </Style>
+            <Style x:Key="GreenBoxViewInnerStyle"  TargetType="BoxView">
+                <Setter Property="BackgroundColor" Value="{StaticResource GreenBoxViewInnerColor}"/>
+            </Style>
+            <Style x:Key="DarkBoxViewOuterStyle"  TargetType="BoxView">
+                <Setter Property="Margin" Value="-1"/>
+                <Setter Property="BackgroundColor" Value="{StaticResource DarkBoxViewOuterColor}"/>
+            </Style>
+            <Style x:Key="DarkBoxViewInnerStyle"  TargetType="BoxView">
+                <Setter Property="BackgroundColor" Value="{StaticResource DarkBoxViewInnerColor}"/>
+            </Style>
+            <Style x:Key="BlueButtonStyle"  TargetType="Button">
+                <Setter Property="HorizontalOptions" Value="StartAndExpand"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
+                <Setter Property="TextColor" Value="{StaticResource ButtonTextColor}"/>
+                <Setter Property="BackgroundColor" Value="Transparent"/>
+            </Style>
+            <Style x:Key="GreenButtonStyle"  TargetType="Button">
+                <Setter Property="HorizontalOptions" Value="Center"/>
+                <Setter Property="TextColor" Value="{StaticResource ButtonTextColor}"/>
+                <Setter Property="BackgroundColor" Value="Transparent"/>
+            </Style>
+            <Style x:Key="LinkButtonStyle"  TargetType="Button">
+                <Setter Property="TextColor" Value="{StaticResource LinkButtonTextColor}"/>
+                <Setter Property="BackgroundColor" Value="Transparent"/>
+            </Style>
+            <Style x:Key="PrimaryEntryStyle" TargetType="Entry">
+                <Setter Property="TextColor" Value="{StaticResource PrimaryTextColor}"/>
+            </Style>
+
             <!--<Color x:Key="HyperLinkTextColor">#1A0DAD</Color>
             <Color x:Key="PrimaryBackgroundColor">#F0F0F0</Color>
             <Color x:Key="PrimaryTextColor">#1F1F1F</Color>

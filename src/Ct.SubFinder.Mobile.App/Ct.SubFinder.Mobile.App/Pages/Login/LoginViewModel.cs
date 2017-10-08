@@ -35,7 +35,7 @@ namespace Ct.SubFinder.Mobile.App.Pages.Login
         public LoginViewModel(AppController appController)
         {            
             _appController = appController ?? throw new ArgumentException("appController");
-            Title = "Log in";
+            Title = "Welcome to Sub Finder";
             LogInCommand = new DelegateCommand(Login);
         }
 

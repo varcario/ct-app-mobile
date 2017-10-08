@@ -1,9 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Ct.SubFinder.Mobile.App.Pages.Login.LoginContentPage">
+             x:Class="Ct.SubFinder.Mobile.App.Pages.Login.LoginContentPage"
+             Title="{Binding Title}">
     <ContentPage.Content>
-        <Grid>
+        <Grid BackgroundColor="{StaticResource PrimaryDarkColor}">
             <Grid.RowDefinitions>
                 <RowDefinition Height="35*"/>
                 <RowDefinition Height="100*"/>
@@ -19,29 +20,5 @@
                 <Button Text="Next" Command="{Binding LogInCommand}"  Margin="0,35,0,0"/>
             </StackLayout>
         </Grid>
-        <!--<Grid Padding="12">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="25"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="1"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="100*"/>
-            </Grid.ColumnDefinitions>
-
-
-            <BoxView Grid.Row="1" Grid.ColumnSpan="2" BackgroundColor="White"/>
-            <Label Grid.Row="1" Grid.Column="0" Text="Email" TextColor="Black" VerticalOptions="Center"/>
-            <Entry Grid.Row="1" Grid.Column="1" Text="{Binding EmailAddress}" />
-            <BoxView Grid.Row="3" Grid.ColumnSpan="2" BackgroundColor="White"/>
-            <Label Grid.Row="3" Grid.Column="0" Text="Password" TextColor="Black" VerticalOptions="Center"/>
-            <Entry Grid.Row="3" Grid.Column="1" Text="{Binding Password}" IsPassword="True" />
-            <Button Grid.Row="4" Grid.ColumnSpan="2" HorizontalOptions="Center" Text="Log In" Command="{Binding LogInCommand}"  Margin="0,35,0,0"/>
-
-
-        </Grid>-->
     </ContentPage.Content>
 </ContentPage>

@@ -10,6 +10,7 @@ namespace Ct.SubFinder.Mobile.App.Pages.SignUp
     {
         private readonly AppController _appController;
 
+        public string Title { get; set; }
         private string _emailAddress = string.Empty;
         public string EmailAddress
         {
@@ -27,8 +28,8 @@ namespace Ct.SubFinder.Mobile.App.Pages.SignUp
 
         public SignUpViewModel(AppController appController)
         {
+            Title = "New Account";
             _appController = appController ?? throw new ArgumentException("appController");
-
             NextCommand = new DelegateCommand(Next);
         }
 

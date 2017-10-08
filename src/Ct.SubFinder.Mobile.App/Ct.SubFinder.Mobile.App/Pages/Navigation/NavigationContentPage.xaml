@@ -9,33 +9,27 @@
     </ContentPage.BindingContext>
     <ContentPage.ToolbarItems>
         <ToolbarItem Name="MenuItem1" Order="Primary" Icon="ic_home_black_24dp.png" Text="Item 1" Priority="0" />
-        <ToolbarItem Name="MenuItem2" Order="Primary" Icon="ic_contacts_black_24dp.png" Text="Item 2" Priority="1" />
+        <ToolbarItem Name="MenuItem2" Order="Primary" Icon="ic_person_yellow_24dp.png" Text="Item 2" Priority="1" />
     </ContentPage.ToolbarItems>
 
     <ContentPage.Content>
-        <Grid BackgroundColor="#e3e3e3">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="Auto"/>
-            </Grid.RowDefinitions>
-
+        <StackLayout>
             <controls:CarouselViewControl                 
                 Orientation="Horizontal" 
                 InterPageSpacing="0" 
                 Position="{Binding Position}" 
-                ItemsSource="{Binding Views}" 
-                VerticalOptions="FillAndExpand" 
-                HorizontalOptions="FillAndExpand">
+                ItemsSource="{Binding Views}"
+                VerticalOptions="FillAndExpand">
                 <controls:CarouselViewControl.ItemTemplate>
                     <DataTemplate>
-                        <StackLayout VerticalOptions="FillAndExpand" BackgroundColor="Black">
+                        <StackLayout>
                             <ContentView Content="{Binding}"/>
                         </StackLayout>
                     </DataTemplate>
                 </controls:CarouselViewControl.ItemTemplate>
             </controls:CarouselViewControl>
 
-            <Grid Grid.Row="1" BackgroundColor="#e3e3e3"  HeightRequest="50" >
+            <Grid HeightRequest="50" >
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="*" />
@@ -49,6 +43,6 @@
                 <Button Command="{Binding SwitchViewCommand}" CommandParameter="4" Image="ic_camera_enhance_black_24dp.png" VerticalOptions="Center" HorizontalOptions="Center" Grid.Column="3" Opacity="0.6" />
                 <Button Command="{Binding SwitchViewCommand}" CommandParameter="5" Image="ic_settings_black_24dp.png" VerticalOptions="Center" HorizontalOptions="Center" Grid.Column="4" Opacity="0.6" />
             </Grid>
-        </Grid>
+        </StackLayout>
     </ContentPage.Content>
 </ContentPage>

@@ -5,7 +5,7 @@
              x:Class="Ct.SubFinder.Mobile.App.Pages.Home.HomeContentPage"             
              Title="{Binding Title}">
     <ContentPage.Content>
-        <StackLayout Margin="30" Spacing="30" HorizontalOptions="Center">
+        <StackLayout Margin="30, 50" Spacing="30" HorizontalOptions="Center">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>

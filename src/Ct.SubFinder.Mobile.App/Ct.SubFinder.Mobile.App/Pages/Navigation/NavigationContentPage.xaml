@@ -2,14 +2,13 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"              
              xmlns:vm="clr-namespace:Ct.SubFinder.Mobile.App.Pages.Navigation"
-             xmlns:controls="clr-namespace:CarouselView.FormsPlugin.Abstractions;assembly=CarouselView.FormsPlugin.Abstractions"
+             xmlns:controls="clr-namespace:CarouselView.FormsPlugin.Abstractions;assembly=CarouselView.FormsPlugin.Abstractions"             
              x:Class="Ct.SubFinder.Mobile.App.Pages.Navigation.NavigationContentPage">
     <ContentPage.BindingContext>
         <vm:NavigationContentViewModel/>
     </ContentPage.BindingContext>
     <ContentPage.ToolbarItems>
-        <ToolbarItem Name="MenuItem1" Order="Primary" Icon="ic_home_black_24dp.png" Text="Item 1" Priority="0" />
-        <ToolbarItem Name="MenuItem2" Order="Primary" Icon="ic_person_yellow_24dp.png" Text="Item 2" Priority="1" />
+        <ToolbarItem Order="Primary" Icon="ic_person_yellow_24dp.png" Text="Item 2" Priority="0" />
     </ContentPage.ToolbarItems>
 
     <ContentPage.Content>
@@ -37,11 +36,11 @@
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
-                <Button Command="{Binding SwitchViewCommand}" CommandParameter="1" Image="ic_home_black_24dp.png" VerticalOptions="Center" HorizontalOptions="Center" />
-                <Button Command="{Binding SwitchViewCommand}" CommandParameter="2" Image="ic_message_black_24dp.png" VerticalOptions="Center" HorizontalOptions="Center" Grid.Column="1" Opacity="0.6" />
-                <Button Command="{Binding SwitchViewCommand}" CommandParameter="3" Image="ic_contacts_black_24dp.png" VerticalOptions="Center" HorizontalOptions="Center" Grid.Column="2" Opacity="0.6" />
-                <Button Command="{Binding SwitchViewCommand}" CommandParameter="4" Image="ic_camera_enhance_black_24dp.png" VerticalOptions="Center" HorizontalOptions="Center" Grid.Column="3" Opacity="0.6" />
-                <Button Command="{Binding SwitchViewCommand}" CommandParameter="5" Image="ic_settings_black_24dp.png" VerticalOptions="Center" HorizontalOptions="Center" Grid.Column="4" Opacity="0.6" />
+                <Button Command="{Binding SwitchViewCommand}" CommandParameter="0" Image="ic_home_black_24dp.png" VerticalOptions="Center" HorizontalOptions="Center" Opacity="{Binding Position, Converter={StaticResource SelectedItemToOpacityConverter}, ConverterParameter=0}" />
+                <Button Command="{Binding SwitchViewCommand}" CommandParameter="1" Image="ic_message_black_24dp.png" VerticalOptions="Center" HorizontalOptions="Center" Grid.Column="1" Opacity="{Binding Position, Converter={StaticResource SelectedItemToOpacityConverter}, ConverterParameter=1}" />
+                <Button Command="{Binding SwitchViewCommand}" CommandParameter="2" Image="ic_contacts_black_24dp.png" VerticalOptions="Center" HorizontalOptions="Center" Grid.Column="2" Opacity="{Binding Position, Converter={StaticResource SelectedItemToOpacityConverter}, ConverterParameter=2}" />
+                <Button Command="{Binding SwitchViewCommand}" CommandParameter="3" Image="ic_camera_enhance_black_24dp.png" VerticalOptions="Center" HorizontalOptions="Center" Grid.Column="3" Opacity="{Binding Position, Converter={StaticResource SelectedItemToOpacityConverter}, ConverterParameter=3}" />
+                <Button Command="{Binding SwitchViewCommand}" CommandParameter="4" Image="ic_settings_black_24dp.png" VerticalOptions="Center" HorizontalOptions="Center" Grid.Column="4" Opacity="{Binding Position, Converter={StaticResource SelectedItemToOpacityConverter}, ConverterParameter=4}" />
             </Grid>
         </StackLayout>
     </ContentPage.Content>

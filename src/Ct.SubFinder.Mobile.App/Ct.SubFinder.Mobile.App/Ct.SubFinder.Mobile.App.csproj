@@ -106,6 +106,7 @@
     <Compile Include="State\AppState.cs" />
     <Compile Include="State\AppStateObservable.cs" />
     <Compile Include="State\AppStateEvent.cs" />
+    <Compile Include="ValueConverters\SelectedItemToOpacityConverter.cs" />
     <Compile Include="Views\Camera\CameraView.xaml.cs">
       <DependentUpon>CameraView.xaml</DependentUpon>
     </Compile>

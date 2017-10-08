@@ -46,26 +46,9 @@ namespace Ct.SubFinder.Mobile.App.Pages.Navigation
             };            
         }
 
-        private void OnSwitchView(string id)
+        private void OnSwitchView(string selectedPosition)
         {
-            switch (id)
-            {
-                case "1":
-                    Position = 0;
-                    break;
-                case "2":
-                    Position = 1;
-                    break;
-                case "3":
-                    Position = 2;
-                    break;
-                case "4":
-                    Position = 3;
-                    break;
-                case "5":
-                    Position = 4;
-                    break;
-            }            
+            Position = int.Parse(selectedPosition);
         }
     }
 }

@@ -7,11 +7,8 @@
               xmlns:contacts="clr-namespace:Ct.SubFinder.Mobile.App.Views.Contacts"
               xmlns:msg="clr-namespace:Ct.SubFinder.Mobile.App.Views.Messages"
               xmlns:cam="clr-namespace:Ct.SubFinder.Mobile.App.Views.Camera"              
-              xmlns:c="clr-namespace:Ct.SubFinder.Mobile.App.Controls"
-               Title="Menu">
+              xmlns:c="clr-namespace:Ct.SubFinder.Mobile.App.Controls">
     <ContentPage.ToolbarItems>
-        <ToolbarItem Name="MenuItem1" Order="Primary" Icon="ic_home_black_24dp.png" Text="Item 1" Priority="0" />
-        <ToolbarItem Name="MenuItem2" Order="Primary" Icon="ic_contacts_black_24dp.png" Text="Item 2" Priority="1" />
     </ContentPage.ToolbarItems>
     <StackLayout>
         <ListView x:Name="MenuItemsListView"
@@ -26,23 +23,11 @@
                   />
             </ListView.Behaviors>
             <ListView.Header>
-                <Grid BackgroundColor="#03A9F4">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="10"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="10"/>
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="30"/>
-                        <RowDefinition Height="80"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="10"/>
-                    </Grid.RowDefinitions>
-                    <Label
-                Grid.Column="1"
-                Grid.Row="2"
-                Text="{Binding MenuTitle}"
-                Style="{DynamicResource SubtitleStyle}"/>
+                <Grid BackgroundColor="{StaticResource PrimaryLightColor}">
+                    <StackLayout  Margin="20" Spacing="20" HorizontalOptions="StartAndExpand">
+                        <Image Source="splash_logo.png" HorizontalOptions="Start"/>
+                        <Label Text="{Binding EmailAddress}" HorizontalOptions="Start"/>
+                    </StackLayout>
                 </Grid>
             </ListView.Header>
             <ListView.ItemTemplate>

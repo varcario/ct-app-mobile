@@ -2,7 +2,6 @@
 using Prism.Commands;
 using Prism.Mvvm;
 using System;
-using System.Windows.Input;
 
 namespace Ct.SubFinder.Mobile.App.Pages.SignUp
 {
@@ -10,7 +9,13 @@ namespace Ct.SubFinder.Mobile.App.Pages.SignUp
     {
         private readonly AppController _appController;
 
-        public string Title { get; set; }
+        public string _title;
+
+        public string Title
+        {
+            get { return _title; }
+            set { SetProperty(ref _title, value); }
+        }
         private string _emailAddress = string.Empty;
         public string EmailAddress
         {
@@ -24,16 +29,16 @@ namespace Ct.SubFinder.Mobile.App.Pages.SignUp
             get { return _password; }
             set { SetProperty(ref _password, value); }
         }
-        public ICommand NextCommand { set; get; }
+        public DelegateCommand NextCommand { set; get; }
 
         public SignUpViewModel(AppController appController)
         {
             Title = "New Account";
-            _appController = appController ?? throw new ArgumentException("appController");
-            NextCommand = new DelegateCommand(Next);
+            _appController = appController ?? throw new ArgumentException(nameof(appController));
+            NextCommand = new DelegateCommand(OnNext);
         }
 
-        private void Next()
+        private void OnNext()
         {
             _appController.State.Session.Username = _emailAddress;
             _appController.State.Session.Secrete = _password;

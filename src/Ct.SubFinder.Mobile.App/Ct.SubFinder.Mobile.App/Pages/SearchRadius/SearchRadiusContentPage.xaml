@@ -2,20 +2,35 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:b="clr-namespace:Prism.Behaviors;assembly=Prism.Forms"
-             x:Class="Ct.SubFinder.Mobile.App.Pages.SearchRadius.SearchRadiusContentPage">
+             x:Class="Ct.SubFinder.Mobile.App.Pages.SearchRadius.SearchRadiusContentPage"
+             Title="{Binding Title}">
     <ContentPage.Content>
-        <StackLayout>
-            <Entry Text="{Binding ZipCode}" Placeholder="Zip Code"/>
-            <Label Text="Search Radius"/>
-            <Label Text="{Binding Miles}"/>
+        <StackLayout Margin="30, 50" Spacing="30" HorizontalOptions="Center">
+            <StackLayout>
+                <Label Text="Zip Code" TextColor="{StaticResource PrimaryTextColor}" FontSize="Medium"/>
+                <Grid>
+                    <BoxView Style="{StaticResource DarkBoxViewOuterStyle}"/>
+                    <BoxView Style="{StaticResource DarkBoxViewInnerStyle}"/>
+                    <Entry Text="{Binding ZipCode}" Style="{StaticResource PrimaryEntryStyle}"/>
+                </Grid>
+            </StackLayout>
+            
+            <StackLayout Orientation="Horizontal">
+                    <Label Text="Miles willing to travel"/>
+                    <Label Text="{Binding Miles}"/>
+            </StackLayout>
+            
             <Slider Maximum="200" Minimum="5" Value="{Binding Miles}">
                 <Slider.Behaviors>
-                    <b:EventToCommandBehavior EventName="ValueChanged"
-                      Command="{Binding MilesChangedCommand}"
-                      CommandParameter="{Binding Value}" />
+                    <b:EventToCommandBehavior EventName="ValueChanged" Command="{Binding MilesChangedCommand}" CommandParameter="{Binding Value}" />
                 </Slider.Behaviors>
             </Slider>
-            <Button Text="Done" Command="{Binding DoneCommand}"/>
+
+            <Grid>
+                <BoxView Style="{StaticResource GreenBoxViewOuterStyle}"/>
+                <BoxView Style="{StaticResource GreenBoxViewInnerStyle}"/>
+                <Button Text="Next" Command="{Binding DoneCommand}" Style="{StaticResource GreenButtonStyle}"/>
+            </Grid>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

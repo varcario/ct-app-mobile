@@ -6,7 +6,7 @@
              Title="{Binding Title}">
     <ContentPage.Content>
         <StackLayout Margin="30, 50" Spacing="30" HorizontalOptions="Center">
-            <Grid>
+            <Grid ColumnSpacing="12">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="*"/>
@@ -14,7 +14,8 @@
                 <BoxView Grid.ColumnSpan="2" Style="{StaticResource BlueBoxViewOuterStyle}"/>
                 <BoxView Grid.ColumnSpan="2" Style="{StaticResource BlueBoxViewInnerStyle}"/>
                 <Image Grid.Column="0" Source="ic_sub_finder_normal_24dp.png" HorizontalOptions="Center"/>
-                <Button Grid.Column="1" Text="Create a Sub Finder Account" Command="{Binding SignUpCommand}" Style="{StaticResource BlueButtonStyle}"/>
+                <Label Grid.Column="1" Text="Create a Sub Finder Account" HorizontalOptions="Start" TextColor="{StaticResource ButtonTextColor}" VerticalOptions="Center"/>
+                <Button Grid.ColumnSpan="2" Command="{Binding SignUpCommand}" Style="{StaticResource BlueButtonStyle}"/>
             </Grid>
 
             <Label Text="or Sign in with an existing Sub Finder Account" HorizontalOptions="Center" FontSize="Medium"/>
@@ -30,7 +31,7 @@
                 <Grid>
                     <BoxView Style="{StaticResource DarkBoxViewOuterStyle}"/>
                     <BoxView Style="{StaticResource DarkBoxViewInnerStyle}"/>
-                    <Entry Text="{Binding Password}" TextColor="{StaticResource PrimaryTextColor}" IsPassword="True" />
+                    <Entry Text="{Binding Password}" Style="{StaticResource PrimaryEntryStyle}" IsPassword="True" />
                 </Grid>
             </StackLayout>
 

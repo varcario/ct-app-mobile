@@ -27,17 +27,15 @@
                     <DataTemplate>
                         <ViewCell>
                             <Grid Padding="10">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="Auto" />
-                                    <RowDefinition Height="*" />
-                                </Grid.RowDefinitions>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto" />
-                                    <ColumnDefinition Width="*" />
-                                </Grid.ColumnDefinitions>
-                                <Image Grid.RowSpan="2" Source="{Binding ImageUrl}" Aspect="AspectFill" HeightRequest="60" WidthRequest="60" />
-                                <Label Grid.Column="1" Text="{Binding User.FirstName}" Style="{DynamicResource TitleStyle}" />
-                                <Label Grid.Row="1" Grid.Column="1" Text="{Binding Location}" VerticalOptions="End" Style="{DynamicResource SubtitleTextStyle}" />
+                                <BoxView Style="{StaticResource DarkBoxViewOuterStyle}" BackgroundColor="#007ACC"/>
+                                <BoxView Style="{StaticResource DarkBoxViewInnerStyle}" BackgroundColor="#F0F0F0"/>
+                                <StackLayout  Orientation="Horizontal" Margin="10">
+                                    <Image Grid.RowSpan="2" Source="{Binding ImageUrl}" Aspect="AspectFill" HeightRequest="60" WidthRequest="60" />
+                                    <StackLayout VerticalOptions="Center">
+                                        <Label Grid.Column="1" Text="{Binding User.FirstName}" Style="{DynamicResource TitleStyle}" />
+                                        <Label Grid.Row="1" Grid.Column="1" Text="{Binding Location}" VerticalOptions="End" Style="{DynamicResource SubtitleTextStyle}" />
+                                    </StackLayout>
+                                </StackLayout>
                             </Grid>
                         </ViewCell>
                     </DataTemplate>

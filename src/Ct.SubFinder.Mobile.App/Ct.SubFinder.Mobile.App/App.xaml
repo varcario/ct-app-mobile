@@ -30,6 +30,7 @@
                 <Setter Property="BackgroundColor" Value="{StaticResource PrimaryColor}"/>
             </Style>
             <Style TargetType="Label">
+                <Setter Property="FontSize" Value="Medium"/>
                 <Setter Property="TextColor" Value="{StaticResource PrimaryTextColor}"/>
             </Style>
 
@@ -60,13 +61,13 @@
                 <Setter Property="BackgroundColor" Value="{StaticResource DarkBoxViewInnerColor}"/>
             </Style>
             <Style x:Key="BlueButtonStyle"  TargetType="Button">
-                <Setter Property="HorizontalOptions" Value="StartAndExpand"/>
+                <Setter Property="HorizontalOptions" Value="Fill"/>
                 <Setter Property="FontAttributes" Value="Bold"/>
                 <Setter Property="TextColor" Value="{StaticResource ButtonTextColor}"/>
                 <Setter Property="BackgroundColor" Value="Transparent"/>
             </Style>
             <Style x:Key="GreenButtonStyle"  TargetType="Button">
-                <Setter Property="HorizontalOptions" Value="Center"/>
+                <Setter Property="HorizontalOptions" Value="Fill"/>
                 <Setter Property="TextColor" Value="{StaticResource ButtonTextColor}"/>
                 <Setter Property="BackgroundColor" Value="Transparent"/>
             </Style>

@@ -4,21 +4,27 @@
              x:Class="Ct.SubFinder.Mobile.App.Pages.SignUp.SignUpContentPage"             
              Title="{Binding Title}">
     <ContentPage.Content>
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="35*"/>
-                <RowDefinition Height="100*"/>
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="20*"/>
-                <ColumnDefinition Width="60*"/>
-                <ColumnDefinition Width="20*"/>
-            </Grid.ColumnDefinitions>
-            <StackLayout Grid.Row="1" Grid.ColumnSpan="3">
-                <Entry Text="{Binding EmailAddress}" Placeholder="Email" />
-                <Entry Text="{Binding Password}" Placeholder="Password" IsPassword="True" />
-                <Button Text="Next" Command="{Binding NextCommand}"  Margin="0,35,0,0"/>
+        <StackLayout Margin="30, 50" Spacing="30" HorizontalOptions="Center">
+            <StackLayout>
+                <Label Text="Email" TextColor="{StaticResource PrimaryTextColor}" FontSize="Medium"/>
+                <Grid>
+                    <BoxView Style="{StaticResource DarkBoxViewOuterStyle}"/>
+                    <BoxView Style="{StaticResource DarkBoxViewInnerStyle}"/>
+                    <Entry Text="{Binding EmailAddress}" Style="{StaticResource PrimaryEntryStyle}"/>
+                </Grid>
+                <Label Text="Password" TextColor="{StaticResource PrimaryTextColor}" FontSize="Medium"/>
+                <Grid>
+                    <BoxView Style="{StaticResource DarkBoxViewOuterStyle}"/>
+                    <BoxView Style="{StaticResource DarkBoxViewInnerStyle}"/>
+                    <Entry Text="{Binding Password}" Style="{StaticResource PrimaryEntryStyle}" IsPassword="True" />
+                </Grid>
             </StackLayout>
-        </Grid>
+
+            <Grid>
+                <BoxView Style="{StaticResource GreenBoxViewOuterStyle}"/>
+                <BoxView Style="{StaticResource GreenBoxViewInnerStyle}"/>
+                <Button Text="Next" Command="{Binding NextCommand}" Style="{StaticResource GreenButtonStyle}"/>
+            </Grid>
+        </StackLayout>
     </ContentPage.Content>
 </ContentPage>

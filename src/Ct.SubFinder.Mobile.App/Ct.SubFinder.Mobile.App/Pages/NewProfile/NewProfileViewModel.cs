@@ -2,9 +2,7 @@
 using Ct.SubFinder.Mobile.App.Controllers;
 using Prism.Commands;
 using Prism.Mvvm;
-using Prism.Navigation;
 using System;
-using System.Windows.Input;
 
 namespace Ct.SubFinder.Mobile.App.Pages.NewProfile
 {
@@ -17,6 +15,8 @@ namespace Ct.SubFinder.Mobile.App.Pages.NewProfile
         #endregion
 
         #region Bindable Properties 
+        public string Title { get; set; }
+
         private string _firstName;
         public string FirstName
         {
@@ -69,9 +69,9 @@ namespace Ct.SubFinder.Mobile.App.Pages.NewProfile
 
         #region Bindable Commands
 
-        public ICommand ToggleIsGeneralContractorCommand { set; get; }
-        public ICommand ToggleIsSubContractorCommand { set; get; }
-        public ICommand NextCommand { set; get; }
+        public DelegateCommand ToggleIsGeneralContractorCommand { set; get; }
+        public DelegateCommand ToggleIsSubContractorCommand { set; get; }
+        public DelegateCommand NextCommand { set; get; }
 
         #endregion
 
@@ -81,9 +81,10 @@ namespace Ct.SubFinder.Mobile.App.Pages.NewProfile
         {
             _appController = appController ?? throw new ArgumentException("appController");
 
+            Title = "Your Profile";
             ToggleIsGeneralContractorCommand = new DelegateCommand(ToggleIsGeneralContractor);
             ToggleIsSubContractorCommand = new DelegateCommand(ToggleIsSubContractor);
-            NextCommand = new DelegateCommand(Next);
+            NextCommand = new DelegateCommand(OnNext);
         }
 
         #endregion
@@ -100,7 +101,7 @@ namespace Ct.SubFinder.Mobile.App.Pages.NewProfile
 
         }
 
-        private  void Next()
+        private  void OnNext()
         {
             _appController.State.Profile.JobTitle = _jobTitle;
             _appController.State.Profile.Company = _company;

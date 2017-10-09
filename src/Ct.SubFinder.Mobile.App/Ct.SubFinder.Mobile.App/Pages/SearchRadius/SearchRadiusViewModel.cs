@@ -10,8 +10,14 @@ namespace Ct.SubFinder.Mobile.App.Pages.SearchRadius
     public class SearchRadiusViewModel : BindableBase
     {
         private readonly AppController _appController;
-        private const int DEFAULT_MILE_RADIUS = 20;        
+        private const int DEFAULT_MILE_RADIUS = 20;
 
+        public string _title;
+        public string Title
+        {
+            get { return _title; }
+            set { SetProperty(ref _title, value); }
+        }
         private string _zipCode;
         public string ZipCode
         {
@@ -32,6 +38,7 @@ namespace Ct.SubFinder.Mobile.App.Pages.SearchRadius
         public SearchRadiusViewModel(AppController appController)
         {
             _appController = appController ?? throw new ArgumentException("appController");
+            Title = "Your Profile";
             DoneCommand = new DelegateCommand(OnDone);
             MilesChangedCommand = new DelegateCommand<double?>(OnMilesChanged);
             Miles = DEFAULT_MILE_RADIUS;

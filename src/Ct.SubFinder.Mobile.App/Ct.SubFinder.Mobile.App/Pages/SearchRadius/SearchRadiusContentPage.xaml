@@ -16,7 +16,7 @@
             </StackLayout>
             
             <StackLayout Orientation="Horizontal">
-                    <Label Text="Miles willing to travel"/>
+                    <Label Text="{Binding RadiusLabel}"/>
                     <Label Text="{Binding Miles}"/>
             </StackLayout>
             

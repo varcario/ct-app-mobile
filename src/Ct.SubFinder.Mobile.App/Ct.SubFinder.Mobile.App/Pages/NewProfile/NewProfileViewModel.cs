@@ -15,7 +15,13 @@ namespace Ct.SubFinder.Mobile.App.Pages.NewProfile
         #endregion
 
         #region Bindable Properties 
-        public string Title { get; set; }
+        public string _title;
+
+        public string Title
+        {
+            get { return _title; }
+            set { SetProperty(ref _title, value); }
+        }
 
         private string _firstName;
         public string FirstName
@@ -69,8 +75,6 @@ namespace Ct.SubFinder.Mobile.App.Pages.NewProfile
 
         #region Bindable Commands
 
-        public DelegateCommand ToggleIsGeneralContractorCommand { set; get; }
-        public DelegateCommand ToggleIsSubContractorCommand { set; get; }
         public DelegateCommand NextCommand { set; get; }
 
         #endregion
@@ -82,8 +86,6 @@ namespace Ct.SubFinder.Mobile.App.Pages.NewProfile
             _appController = appController ?? throw new ArgumentException("appController");
 
             Title = "Your Profile";
-            ToggleIsGeneralContractorCommand = new DelegateCommand(ToggleIsGeneralContractor);
-            ToggleIsSubContractorCommand = new DelegateCommand(ToggleIsSubContractor);
             NextCommand = new DelegateCommand(OnNext);
         }
 
@@ -91,40 +93,15 @@ namespace Ct.SubFinder.Mobile.App.Pages.NewProfile
 
         #region Private Methods
 
-        private void ToggleIsGeneralContractor()
-        {
-
-        }
-
-        private void ToggleIsSubContractor()
-        {
-
-        }
-
         private  void OnNext()
         {
-            _appController.State.Profile.JobTitle = _jobTitle;
-            _appController.State.Profile.Company = _company;
-
-            if (_isGeneralContractor)
-            {                
-                _appController.State.Profile.User = new GeneralContractor
-                {
-                    FirstName = _firstName,
-                    LastName = _lastName,
-                    PhoneNumber = _phoneNumber
-                };
-            }
-            else
-            {
-                _appController.State.Profile.User = new SubContractor
-                {
-                    FirstName = _firstName,
-                    LastName = _lastName,
-                    PhoneNumber = _phoneNumber
-                };
-            }
-            _appController.CreateProfile();
+            _appController.State.User.Profile.FirstName = _firstName;
+            _appController.State.User.Profile.LastName = _firstName;
+            _appController.State.User.Profile.PhoneNumber = _phoneNumber;
+            _appController.State.User.Profile.JobTitle = _jobTitle;
+            _appController.State.User.Profile.Company = _company;
+            
+            _appController.NavigateToSearchArea();
         }
 
         #endregion

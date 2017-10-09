@@ -36,14 +36,16 @@ namespace Ct.SubFinder.Mobile.App
 
             Container.RegisterTypeForNavigation<Pages.Camera.CameraContentPage, Pages.Camera.CameraViewModel>();
             Container.RegisterTypeForNavigation<Pages.Contacts.ContactsContentPage, Pages.Contacts.ContactsViewModel>();
-            Container.RegisterTypeForNavigation<Pages.Home.HomeContentPage, Pages.Home.HomeViewModel>();
-            Container.RegisterTypeForNavigation<Pages.Login.LoginContentPage, Pages.Login.LoginViewModel>();            
+            Container.RegisterTypeForNavigation<Pages.Home.HomeContentPage, Pages.Home.HomeViewModel>();          
             Container.RegisterTypeForNavigation<Pages.Messages.MessagesContentPage, Pages.Messages.MessagesContentPage>();
             Container.RegisterTypeForNavigation<Pages.Dashboard.DashboardContentPage, Pages.Dashboard.DashboardViewModel>();
 
+            Container.RegisterTypeForNavigation<Pages.ForgotPassword.ForgotPasswordContentPage, Pages.ForgotPassword.ForgotPasswordViewModel>();
             Container.RegisterTypeForNavigation<Pages.SignUp.SignUpContentPage, Pages.SignUp.SignUpViewModel>();
+            Container.RegisterTypeForNavigation<Pages.NewAccount.NewAccountContentPage, Pages.NewAccount.NewAccountViewModel>();
             Container.RegisterTypeForNavigation<Pages.NewProfile.NewProfileContentPage, Pages.NewProfile.NewProfileViewModel>();
             Container.RegisterTypeForNavigation<Pages.SearchRadius.SearchRadiusContentPage, Pages.SearchRadius.SearchRadiusViewModel>();
+            Container.RegisterTypeForNavigation<Pages.Skills.SkillsContentPage, Pages.Skills.SkillsViewModel>();
 
             Container.RegisterTypeForNavigation<Pages.Navigation.NavigationContentPage, Pages.Navigation.NavigationContentViewModel>();
             Container.RegisterTypeForNavigation<Pages.Navigation.NavigationCarouselPage, Pages.Navigation.NavigationCarouselViewModel>();

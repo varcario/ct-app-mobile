@@ -12,7 +12,7 @@ namespace Ct.SubFinder.Mobile.App.Agents.Session
         {
             if(state.Session.Username == "Ismar" && state.Session.Secrete == "password")
             {
-                state.Profile = new Domain.Profile { User = new Domain.User { FirstName = "Ismar" } };
+                state.User.Profile = new Domain.Profile { FirstName = "Ismar" };
             }
             return state;
         }

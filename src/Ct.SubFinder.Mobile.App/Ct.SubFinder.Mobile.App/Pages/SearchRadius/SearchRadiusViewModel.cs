@@ -24,6 +24,12 @@ namespace Ct.SubFinder.Mobile.App.Pages.SearchRadius
             get { return _zipCode; }
             set { SetProperty(ref _zipCode, value); }
         }
+        private string _radiusLabel;
+        public string RadiusLabel
+        {
+            get { return _radiusLabel; }
+            set { SetProperty(ref _radiusLabel, value); }
+        }
 
         private double _miles;
         public double Miles
@@ -39,6 +45,14 @@ namespace Ct.SubFinder.Mobile.App.Pages.SearchRadius
         {
             _appController = appController ?? throw new ArgumentException("appController");
             Title = "Your Profile";
+            if(_appController.State.Account.AccountType == Domain.AccountType.GeneralContractor)
+            {
+                RadiusLabel = "Miles willing to search for sub contractors";
+            }
+            else
+            {
+                RadiusLabel = "Miles willing to travel";
+            }
             DoneCommand = new DelegateCommand(OnDone);
             MilesChangedCommand = new DelegateCommand<double?>(OnMilesChanged);
             Miles = DEFAULT_MILE_RADIUS;
@@ -46,10 +60,17 @@ namespace Ct.SubFinder.Mobile.App.Pages.SearchRadius
 
         private void OnDone()
         {
-            _appController.State.Profile.ZipCode = _zipCode;
-            _appController.State.Profile.Radius = _miles;
+            _appController.State.User.Profile.ZipCode = _zipCode;
+            _appController.State.User.Profile.Radius = _miles;
 
-            _appController.UpdateProfile();
+            if (_appController.State.Account.AccountType == Domain.AccountType.GeneralContractor)
+            {
+                _appController.CreateNewAccount();
+            }
+            else
+            {
+                _appController.NavigateToSkills();
+            }
         }
 
         public void OnMilesChanged(double? miles)

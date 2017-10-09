@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace Ct.SubFinder.Mobile.App.Pages.Login
+namespace Ct.SubFinder.Mobile.App.Pages.NewAccount
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class LoginContentPage : ContentPage
+	public partial class NewAccountContentPage : ContentPage
 	{
-		public LoginContentPage ()
+		public NewAccountContentPage ()
 		{
 			InitializeComponent ();
 		}

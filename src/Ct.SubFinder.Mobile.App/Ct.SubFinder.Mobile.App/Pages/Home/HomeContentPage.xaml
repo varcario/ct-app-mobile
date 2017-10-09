@@ -13,7 +13,7 @@
                 </Grid.ColumnDefinitions>
                 <BoxView Grid.ColumnSpan="2" Style="{StaticResource BlueBoxViewOuterStyle}"/>
                 <BoxView Grid.ColumnSpan="2" Style="{StaticResource BlueBoxViewInnerStyle}"/>
-                <Image Grid.Column="0" Source="ic_sub_finder_normal_24dp.png" HorizontalOptions="Center"/>
+                <Image Grid.Column="0" Source="ic_sub_finder_normal_24dp.png" Margin="8,0,0,0" HorizontalOptions="Center"/>
                 <Label Grid.Column="1" Text="Create a Sub Finder Account" HorizontalOptions="Start" TextColor="{StaticResource ButtonTextColor}" VerticalOptions="Center"/>
                 <Button Grid.ColumnSpan="2" Command="{Binding SignUpCommand}" Style="{StaticResource BlueButtonStyle}"/>
             </Grid>

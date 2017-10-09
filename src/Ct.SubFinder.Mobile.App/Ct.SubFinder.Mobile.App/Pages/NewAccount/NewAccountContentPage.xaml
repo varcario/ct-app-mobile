@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Ct.SubFinder.Mobile.App.Pages.NewAccount.NewAccountContentPage"
+              Title="{Binding Title}">
+    <ContentPage.Content>
+        <StackLayout Margin="30, 50" Spacing="30" HorizontalOptions="Center">
+            <Grid ColumnSpacing="12">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <BoxView Grid.ColumnSpan="2" Style="{StaticResource BlueBoxViewOuterStyle}"/>
+                <BoxView Grid.ColumnSpan="2" Style="{StaticResource BlueBoxViewInnerStyle}"/>
+                <Image Grid.Column="0" Source="ic_sub_finder_normal_24dp.png" Margin="8,0,0,0" HorizontalOptions="Center"/>
+                <Label Grid.Column="1" Text="Create General Contractor Account" HorizontalOptions="Start" TextColor="{StaticResource ButtonTextColor}" VerticalOptions="Center"/>
+                <Button Grid.ColumnSpan="2" Command="{Binding NewGeneralContractorCommand}" Style="{StaticResource BlueButtonStyle}"/>
+            </Grid>
+
+            <Grid ColumnSpacing="12">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <BoxView Grid.ColumnSpan="2" Style="{StaticResource BlueBoxViewOuterStyle}"/>
+                <BoxView Grid.ColumnSpan="2" Style="{StaticResource BlueBoxViewInnerStyle}"/>
+                <Image Grid.Column="0" Source="ic_sub_finder_normal_24dp.png" Margin="8,0,0,0" HorizontalOptions="Center"/>
+                <Label Grid.Column="1" Text="Create Sub Contractor Account" HorizontalOptions="Start" TextColor="{StaticResource ButtonTextColor}" VerticalOptions="Center"/>
+                <Button Grid.ColumnSpan="2" Command="{Binding NewSubContractorCommand}" Style="{StaticResource BlueButtonStyle}"/>
+            </Grid>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

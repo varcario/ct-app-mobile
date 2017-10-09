@@ -57,14 +57,14 @@
       <DependentUpon>DashboardContentPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\Dashboard\DashboardViewModel.cs" />
+    <Compile Include="Pages\ForgotPassword\ForgotPasswordContentPage.xaml.cs">
+      <DependentUpon>ForgotPasswordContentPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\ForgotPassword\ForgotPasswordViewModel.cs" />
     <Compile Include="Pages\Home\HomeContentPage.xaml.cs">
       <DependentUpon>HomeContentPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\Home\HomeViewModel.cs" />
-    <Compile Include="Pages\Login\LoginContentPage.xaml.cs">
-      <DependentUpon>LoginContentPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\Login\LoginViewModel.cs" />
     <Compile Include="Pages\Messages\MessagesContentPage.xaml.cs">
       <DependentUpon>MessagesContentPage.xaml</DependentUpon>
     </Compile>
@@ -89,6 +89,10 @@
     </Compile>
     <Compile Include="Pages\Navigation\NavigationTabbedViewModel.cs" />
     <Compile Include="Pages\Navigation\NavigationContentViewModel.cs" />
+    <Compile Include="Pages\NewAccount\NewAccountContentPage.xaml.cs">
+      <DependentUpon>NewAccountContentPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\NewAccount\NewAccountViewModel.cs" />
     <Compile Include="Pages\NewProfile\NewProfileContentPage.xaml.cs">
       <DependentUpon>NewProfileContentPage.xaml</DependentUpon>
     </Compile>
@@ -101,6 +105,10 @@
       <DependentUpon>SignUpContentPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\SignUp\SignUpViewModel.cs" />
+    <Compile Include="Pages\Skills\SkillsContentPage.xaml.cs">
+      <DependentUpon>SkillsContentPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Skills\SkillsViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\PerformanceTrace.cs" />
     <Compile Include="State\AppState.cs" />
@@ -150,10 +158,6 @@
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Pages\Home\HomeContentPage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Pages\Login\LoginContentPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
@@ -292,6 +296,24 @@
   <ItemGroup>
     <EmbeddedResource Include="Views\Settings\SettingsView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Pages\ForgotPassword\ForgotPasswordContentPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Pages\Skills\SkillsContentPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Pages\NewAccount\NewAccountContentPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>

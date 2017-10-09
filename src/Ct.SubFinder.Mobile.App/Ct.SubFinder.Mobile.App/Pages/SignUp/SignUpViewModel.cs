@@ -42,7 +42,7 @@ namespace Ct.SubFinder.Mobile.App.Pages.SignUp
         {
             _appController.State.Session.Username = _emailAddress;
             _appController.State.Session.Secrete = _password;
-            _appController.CreateUser();
+            _appController.NavigateToNewProfile();
         }
     }
 }

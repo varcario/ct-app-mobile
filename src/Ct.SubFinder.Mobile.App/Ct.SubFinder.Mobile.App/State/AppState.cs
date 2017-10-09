@@ -5,13 +5,15 @@ namespace Ct.SubFinder.Mobile.App.Core
 {
     public class AppState
     {
-        public Profile Profile { get; set; }
         public Session Session { get; set; }
+        public User User { get; set; }
+        public Account Account { get; set; }
 
         public AppState()
         {
-            Profile = new Profile { User = new User { } };
             Session = new Session { Credential = new Credential { } };
+            User = new User {Profile = new Profile() };
+            Account = new Account { Owner = new User { Profile = new Profile() } };
         }
     }
 }

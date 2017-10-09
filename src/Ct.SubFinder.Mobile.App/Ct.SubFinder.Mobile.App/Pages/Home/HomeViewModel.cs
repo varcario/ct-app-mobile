@@ -47,7 +47,7 @@ namespace Ct.SubFinder.Mobile.App.Pages.Home
 
         private void OnSignUp()
         {
-            _appController.NavigateToSignUp();
+            _appController.NavigateToNewAccount();
         }
 
         private void OnForgotPassword()

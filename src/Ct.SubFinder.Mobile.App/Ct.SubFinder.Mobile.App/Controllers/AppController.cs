@@ -1,5 +1,4 @@
-﻿
-using Ct.App.Infrastructure.Interfaces;
+﻿using Ct.App.Infrastructure.Interfaces;
 using Ct.SubFinder.Infrastructure.Interfaces;
 using Ct.SubFinder.Mobile.App.Core;
 using Ct.SubFinder.Mobile.App.State;
@@ -68,24 +67,10 @@ namespace Ct.SubFinder.Mobile.App.Controllers
             NavigateToMain();
         }
 
-        public void CreateUser()
-        {
-            _postUserAgent.SendRequest(_appStateObservable.State);
-            _appStateObservable.NotifySubscribers(AppStateEvent.UserCreated);
-            NavigateToNewAccount();
-        }
-
-        public void CreateProfile()
+        public void CreateNewAccount()
         {
             _postProfileAgent.SendRequest(_appStateObservable.State);
             _appStateObservable.NotifySubscribers(AppStateEvent.ProfileCreated);
-            NavigateToSearchArea();
-        }
-
-        public void UpdateProfile()
-        {
-            _putProfileAgent.SendRequest(_appStateObservable.State);
-            _appStateObservable.NotifySubscribers(AppStateEvent.ProfileUpdated);
             NavigateToMain();
         }
 
@@ -98,58 +83,57 @@ namespace Ct.SubFinder.Mobile.App.Controllers
         {
             _navigationService.NavigateAsync("app:///NavigationPage/HomeContentPage");
         }
-        public void NavigateToLogin()
+
+        public void NavigateToNewAccount()
         {
-            _navigationService.NavigateAsync("app:///NavigationPage/HomeContentPage/LoginContentPage");
+            _navigationService.NavigateAsync("app:///NavigationPage/HomeContentPage/NewAccountContentPage");
         }
 
         public void NavigateToSignUp()
         {
-            _navigationService.NavigateAsync("app:///NavigationPage/HomeContentPage/SignUpContentPage");
+            _navigationService.NavigateAsync("app:///NavigationPage/HomeContentPage/NewAccountContentPage/SignUpContentPage");
         }
 
-        public void NavigateToForgotPassword()
+        public void NavigateToNewProfile()
         {
-
-        }
-
-        public void NavigateToNewAccount()
-        {
-            _navigationService.NavigateAsync("app:///NavigationPage/HomeContentPage/SignUpContentPage/NewProfileContentPage");
+            _navigationService.NavigateAsync("app:///NavigationPage/HomeContentPage/NewAccountContentPage/SignUpContentPage/NewProfileContentPage");
         }
 
         public void NavigateToSearchArea()
         {
-            _navigationService.NavigateAsync("app:///NavigationPage/HomeContentPage/SignUpContentPage/NewProfileContentPage/SearchRadiusContentPage");
+            _navigationService.NavigateAsync("app:///NavigationPage/HomeContentPage/NewAccountContentPage/SignUpContentPage/NewProfileContentPage/SearchRadiusContentPage");
+        }
+
+        public void NavigateToSkills()
+        {
+            _navigationService.NavigateAsync("app:///NavigationPage/HomeContentPage/NewAccountContentPage/SignUpContentPage/NewProfileContentPage/SearchRadiusContentPage/SkillsContentPage");
+        }
+
+        public void NavigateToForgotPassword()
+        {
+            _navigationService.NavigateAsync("app:///NavigationPage/HomeContentPage/ForgotPasswordContentPage?title=Forgot Password"); 
         }
 
         public void NavigateToMain()
         {
             _navigationService.NavigateAsync("app:///NavigationMasterDetailPage/NavigationPage/NavigationContentPage");
-            //_navigationService.NavigateAsync("app:///NavigationTabbedPage");
         }
 
         public void NavigateToDashboard()
         {
             _navigationService.NavigateAsync("app:///NavigationMasterDetailPage/NavigationPage/DashboardContentPage");
-            //_navigationService.NavigateAsync("app:///NavigationTabbedPage");
         }
         public void NavigateToContacts()
         {
             _navigationService.NavigateAsync("app:///NavigationMasterDetailPage/NavigationPage/ContactsContentPage");
-            //_navigationService.NavigateAsync("app:///NavigationTabbedPage");
         }
         public void NavigateToMessages()
         {
             _navigationService.NavigateAsync("app:///NavigationMasterDetailPage/NavigationPage/MessagesContentPage");
-            //_navigationService.NavigateAsync("app:///NavigationTabbedPage");
         }
         public void NavigateToCamera()
         {
             _navigationService.NavigateAsync("app:///NavigationMasterDetailPage/NavigationPage/CameraContentPage");
-            //_navigationService.NavigateAsync("app:///NavigationTabbedPage");
-
-            //_navigationService.NavigateAsync("app:///NavigationMasterDetailPage/NavigationPage/NavigationCarouselPage");
         }
     }
 }

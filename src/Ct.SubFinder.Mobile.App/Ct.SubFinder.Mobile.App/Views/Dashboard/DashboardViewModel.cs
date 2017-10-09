@@ -19,18 +19,18 @@ namespace Ct.SubFinder.Mobile.App.Views.Dashboard
             Profiles = new ObservableCollection<Profile>();
             _dummyDataSource = new List<Profile>()
             {
-                new Profile{ User = new User { FirstName = "Profile Works!" }, ImageUrl = "contact.png", Location = "Fort Worth" },
-                new Profile{ User = new User { FirstName = "Profile Works!" }, ImageUrl = "contact.png", Location = "Fort Worth" },
-                new Profile{ User = new User { FirstName = "Profile Works!" }, ImageUrl = "contact.png", Location = "Fort Worth" },
-                new Profile{ User = new User { FirstName = "Profile Works!" }, ImageUrl = "contact.png", Location = "Fort Worth" },
-                new Profile{ User = new User { FirstName = "Profile Works!" }, ImageUrl = "contact.png", Location = "Fort Worth" },
-                new Profile{ User = new User { FirstName = "Profile Works!" }, ImageUrl = "contact.png", Location = "Fort Worth" },
-                new Profile{ User = new User { FirstName = "Profile Works!" }, ImageUrl = "contact.png", Location = "Fort Worth" },
-                new Profile{ User = new User { FirstName = "Profile Works!" }, ImageUrl = "contact.png", Location = "Fort Worth" },
-                new Profile{ User = new User { FirstName = "Profile Works!" }, ImageUrl = "contact.png", Location = "Fort Worth" },
-                new Profile{ User = new User { FirstName = "Profile Works!" }, ImageUrl = "contact.png", Location = "Fort Worth" },
-                new Profile{ User = new User { FirstName = "Profile Works!" }, ImageUrl = "contact.png", Location = "Fort Worth" },
-                new Profile{ User = new User { FirstName = "Profile Works!" }, ImageUrl = "contact.png", Location = "Fort Worth" }
+                new Profile{ FirstName = "Profile Works!", ImageUrl = "contact.png", Location = "Fort Worth" },
+                new Profile{ FirstName = "Profile Works!", ImageUrl = "contact.png", Location = "Fort Worth" },
+                new Profile{ FirstName = "Profile Works!", ImageUrl = "contact.png", Location = "Fort Worth" },
+                new Profile{ FirstName = "Profile Works!", ImageUrl = "contact.png", Location = "Fort Worth" },
+                new Profile{ FirstName = "Profile Works!", ImageUrl = "contact.png", Location = "Fort Worth" },
+                new Profile{ FirstName = "Profile Works!", ImageUrl = "contact.png", Location = "Fort Worth" },
+                new Profile{ FirstName = "Profile Works!", ImageUrl = "contact.png", Location = "Fort Worth" },
+                new Profile{ FirstName = "Profile Works!", ImageUrl = "contact.png", Location = "Fort Worth" },
+                new Profile{ FirstName = "Profile Works!", ImageUrl = "contact.png", Location = "Fort Worth" },
+                new Profile{ FirstName = "Profile Works!", ImageUrl = "contact.png", Location = "Fort Worth" },
+                new Profile{ FirstName = "Profile Works!", ImageUrl = "contact.png", Location = "Fort Worth" },
+                new Profile{ FirstName = "Profile Works!", ImageUrl = "contact.png", Location = "Fort Worth" }
             };
 
             SearchCommand = new DelegateCommand<string>(OnSearch);

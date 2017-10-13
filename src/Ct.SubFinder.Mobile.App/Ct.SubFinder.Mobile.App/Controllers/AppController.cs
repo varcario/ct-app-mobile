@@ -12,6 +12,7 @@ namespace Ct.SubFinder.Mobile.App.Controllers
     {        
         private INavigation _navigation;        
         private App _app;
+        private MasterDetailPage _masterDetailPage;
 
         private readonly Dictionary<string, object[]> _viewModelConstructorParameters;
         private readonly Dictionary<string, Page> _pages;
@@ -96,57 +97,43 @@ namespace Ct.SubFinder.Mobile.App.Controllers
             var navPage = GetNavigationPage<Pages.Home.HomeContentPage, Pages.Home.HomeViewModel>(_viewModelConstructorParameters["appController"]);
             _navigation = navPage.Navigation;
             await _navigation.PopToRootAsync();
-            _app.MainPage = navPage;
-            
-            //_navigationService.NavigateAsync("app:///NavigationPage/HomeContentPage");
+            _app.MainPage = navPage;            
         }
 
         public async void NavigateToNewAccount()
         {            
             var page = GetContentPage<Pages.NewAccount.NewAccountContentPage, Pages.NewAccount.NewAccountViewModel>(_viewModelConstructorParameters["appController"]);
             await _navigation.PushAsync(page);
-
-            //_navigationService.NavigateAsync("app:///NavigationPage/HomeContentPage/NewAccountContentPage");
         }
 
         public async void NavigateToSignUp()
         {
             var page = GetContentPage<Pages.SignUp.SignUpContentPage, Pages.SignUp.SignUpViewModel>(_viewModelConstructorParameters["appController"]);
             await _navigation.PushAsync(page);
-
-            //_navigationService.NavigateAsync("app:///NavigationPage/HomeContentPage/NewAccountContentPage/SignUpContentPage");
         }
 
         public async void NavigateToNewProfile()
         {
             var page = GetContentPage<Pages.NewProfile.NewProfileContentPage, Pages.NewProfile.NewProfileViewModel>(_viewModelConstructorParameters["appController"]);
             await _navigation.PushAsync(page);
-
-            //_navigationService.NavigateAsync("app:///NavigationPage/HomeContentPage/NewAccountContentPage/SignUpContentPage/NewProfileContentPage");
         }
 
         public async void NavigateToSearchArea()
         {
             var page = GetContentPage<Pages.SearchRadius.SearchRadiusContentPage, Pages.SearchRadius.SearchRadiusViewModel>(_viewModelConstructorParameters["appController"]);
             await _navigation.PushAsync(page);
-
-            //_navigationService.NavigateAsync("app:///NavigationPage/HomeContentPage/NewAccountContentPage/SignUpContentPage/NewProfileContentPage/SearchRadiusContentPage");
         }
 
         public async void NavigateToSkills()
         {
             var page = GetContentPage<Pages.Skills.SkillsContentPage, Pages.Skills.SkillsViewModel>(_viewModelConstructorParameters["appController"]);
             await _navigation.PushAsync(page);
-
-            //_navigationService.NavigateAsync("app:///NavigationPage/HomeContentPage/NewAccountContentPage/SignUpContentPage/NewProfileContentPage/SearchRadiusContentPage/SkillsContentPage");
         }
 
         public async void NavigateToForgotPassword()
         {
             var page = GetContentPage<Pages.ForgotPassword.ForgotPasswordContentPage, Pages.ForgotPassword.ForgotPasswordViewModel>();
             await _navigation.PushAsync(page);
-
-            // _navigationService.NavigateAsync("app:///NavigationPage/HomeContentPage/ForgotPasswordContentPage?title=Forgot Password"); 
         }
 
         public void NavigateToMain()
@@ -154,43 +141,34 @@ namespace Ct.SubFinder.Mobile.App.Controllers
             var navPage = GetNavigationMasterDetailPage<Pages.Navigation.NavigationContentPage, Pages.Navigation.NavigationContentViewModel>();
             _navigation = navPage.Detail.Navigation;
             _app.MainPage = navPage;
-            
-            //_navigationService.NavigateAsync("app:///NavigationMasterDetailPage/NavigationPage/NavigationContentPage");
+            _masterDetailPage = navPage;
         }
-        MasterDetailPage mdp;
-        public async void NavigateToDashboard()
-        {
-            var page = GetContentPage<Pages.Dashboard.DashboardContentPage, Pages.Dashboard.DashboardViewModel>(_viewModelConstructorParameters["appController"]);
-            await _navigation.PushAsync(page);
 
-            //_navigationService.NavigateAsync("app:///NavigationMasterDetailPage/NavigationPage/DashboardContentPage");
+        public void NavigateToDashboard()
+        {
+            _masterDetailPage.Detail = GetNavigationPage<Pages.Navigation.NavigationContentPage, Pages.Navigation.NavigationContentViewModel>();
+            _navigation = _masterDetailPage.Detail.Navigation;
         }
-        public async void NavigateToContacts()
+        public void NavigateToContacts()
         {
-            var page = GetContentPage<Pages.Contacts.ContactsContentPage, Pages.Contacts.ContactsViewModel>();
-            await _navigation.PushAsync(page);
-
-            //_navigationService.NavigateAsync("app:///NavigationMasterDetailPage/NavigationPage/ContactsContentPage");
+            _masterDetailPage.Detail = GetNavigationPage<Pages.Contacts.ContactsContentPage, Pages.Contacts.ContactsViewModel>();
+            _navigation = _masterDetailPage.Detail.Navigation;
         }
-        public async void NavigateToMessages()
+        public void NavigateToMessages()
         {
-            var page = GetContentPage<Pages.Messages.MessagesContentPage, Pages.Messages.MessagesViewModel>();
-            await _navigation.PushAsync(page);
-
-            //_navigationService.NavigateAsync("app:///NavigationMasterDetailPage/NavigationPage/MessagesContentPage");
+            _masterDetailPage.Detail = GetNavigationPage<Pages.Messages.MessagesContentPage, Pages.Messages.MessagesViewModel>();
+            _navigation = _masterDetailPage.Detail.Navigation;
         }
-        public async void NavigateToCamera()
+        public void NavigateToCamera()
         {
-            var page = GetContentPage<Pages.Camera.CameraContentPage, Pages.Camera.CameraContentPage>();
-            await _navigation.PushAsync(page);
-
-            //_navigationService.NavigateAsync("app:///NavigationMasterDetailPage/NavigationPage/CameraContentPage");
+            _masterDetailPage.Detail = GetNavigationPage<Pages.Camera.CameraContentPage, Pages.Camera.CameraContentPage>();
+            _navigation = _masterDetailPage.Detail.Navigation;
         }
 
         private ContentPage GetContentPage<P, VM>(params object[] viewModelConstructorParameters) where P: Page where VM: class
         {
             ContentPage page = null;
-            var pageKey = typeof(P).ToString();
+            var pageKey = $"cp-{typeof(P).ToString()}";
             if (_pages.ContainsKey(pageKey))
             {
                 page = _pages[pageKey] as ContentPage;
@@ -213,7 +191,7 @@ namespace Ct.SubFinder.Mobile.App.Controllers
         private NavigationPage GetNavigationPage<P, VM>(params object[] viewModelConstructorParameters) where P: Page where VM: class
         {
             NavigationPage page = null;
-            var pageKey = typeof(P).ToString();
+            var pageKey = $"np-{typeof(P).ToString()}";
             if (_pages.ContainsKey(pageKey))
             {
                 page = _pages[pageKey] as NavigationPage;
@@ -239,7 +217,7 @@ namespace Ct.SubFinder.Mobile.App.Controllers
         private MasterDetailPage GetNavigationMasterDetailPage<P, VM>(params object[] viewModelConstructorParameters) where P : Page where VM : class
         {
             MasterDetailPage page = null;
-            var pageKey = typeof(P).ToString();
+            var pageKey = $"mdp-{typeof(P).ToString()}";
             if (_pages.ContainsKey(pageKey))
             {
                 page = _pages[pageKey] as MasterDetailPage;
@@ -251,10 +229,7 @@ namespace Ct.SubFinder.Mobile.App.Controllers
                     page = new Pages.Navigation.NavigationMasterDetailPage()
                     {
                         BindingContext = new Pages.Navigation.NavigationMasterDetailViewModel(this),
-                        Detail = new NavigationPage(Activator.CreateInstance(typeof(P)) as Page)
-                        {
-                            BindingContext = Activator.CreateInstance(typeof(VM), viewModelConstructorParameters)
-                        }
+                        Detail = GetNavigationPage<P, VM>(viewModelConstructorParameters)
                     } as MasterDetailPage;
                 }
                 catch (Exception ex)

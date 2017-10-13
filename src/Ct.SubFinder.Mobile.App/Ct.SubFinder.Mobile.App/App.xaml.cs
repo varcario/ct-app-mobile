@@ -11,6 +11,8 @@ using Ct.SubFinder.Mobile.App.State;
 using Ct.SubFinder.Mobile.App.Agents.Profile;
 using Ct.SubFinder.Mobile.App.Agents.User;
 using System.Net.Http;
+using Prism.Mvvm;
+using Prism.Services;
 
 namespace Ct.SubFinder.Mobile.App
 {
@@ -27,7 +29,7 @@ namespace Ct.SubFinder.Mobile.App
         #region Override Methods
 
         protected override void RegisterTypes()
-        {
+        {            
             Container.RegisterInstance(new HttpClient());
 
             Container.RegisterTypeForNavigation<NavigationPage>();
@@ -36,7 +38,7 @@ namespace Ct.SubFinder.Mobile.App
 
             Container.RegisterTypeForNavigation<Pages.Camera.CameraContentPage, Pages.Camera.CameraViewModel>();
             Container.RegisterTypeForNavigation<Pages.Contacts.ContactsContentPage, Pages.Contacts.ContactsViewModel>();
-            Container.RegisterTypeForNavigation<Pages.Home.HomeContentPage, Pages.Home.HomeViewModel>();          
+            //Container.RegisterTypeForNavigation<Pages.Home.HomeContentPage, Pages.Home.HomeViewModel>();          
             Container.RegisterTypeForNavigation<Pages.Messages.MessagesContentPage, Pages.Messages.MessagesContentPage>();
             Container.RegisterTypeForNavigation<Pages.Dashboard.DashboardContentPage, Pages.Dashboard.DashboardViewModel>();
 
@@ -51,7 +53,9 @@ namespace Ct.SubFinder.Mobile.App
             Container.RegisterTypeForNavigation<Pages.Navigation.NavigationCarouselPage, Pages.Navigation.NavigationCarouselViewModel>();
             Container.RegisterTypeForNavigation<Pages.Navigation.NavigationTabbedPage, Pages.Navigation.NavigationTabbedViewModel>();
             Container.RegisterTypeForNavigation<Pages.Navigation.NavigationMasterDetailPage, Pages.Navigation.NavigationMasterDetailViewModel>();
-           
+            
+            Container.RegisterType<Pages.Home.HomeContentPage>();
+            //Container.RegisterType<BindableBase, Pages.Home.HomeViewModel>(nameof(Pages.Home));
             Container.RegisterType<IAppState<AppState, AppStateEvent>, AppStateObservable>(
                 new InjectionConstructor(
                         Container.Resolve<AppState>()
@@ -62,11 +66,11 @@ namespace Ct.SubFinder.Mobile.App
             Container.RegisterType<IAgent<AppState>, PostSessionAgent>("PostSessionAgent");
             Container.RegisterType<IAgent<AppState>, PostProfileAgent>("PostUserAgent");
             Container.RegisterType<IAgent<AppState>, PostUserAgent>("PostProfileAgent");
-            Container.RegisterType<IAgent<AppState>, PutProfileAgent>("PutProfileAgent");            
-
+            Container.RegisterType<IAgent<AppState>, PutProfileAgent>("PutProfileAgent");
+            
             Container.RegisterType<AppController>(
                 new InjectionConstructor(
-                    Container.Resolve<IAppState<AppState, AppStateEvent>>(),
+                    Container.Resolve<IAppState<AppState, AppStateEvent>>(),                    
                     Container.Resolve<IAgent<AppState>>("GetSessionAgent"),
                     Container.Resolve<IAgent<AppState>>("PostSessionAgent"),
                     Container.Resolve<IAgent<AppState>>("PostUserAgent"),
@@ -88,9 +92,10 @@ namespace Ct.SubFinder.Mobile.App
         }        
 
         protected override void OnStart()
-        {            
+        {
             // Handle when your app starts
-            _appController.Start(NavigationService);
+            //NavigationService.NavigateAsync("NavigationPage");
+            _appController.Start(this);
         }
 
         protected override void OnSleep()

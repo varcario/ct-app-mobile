@@ -2,14 +2,19 @@
 using Ct.SubFinder.Infrastructure.Interfaces;
 using Ct.SubFinder.Mobile.App.Core;
 using Ct.SubFinder.Mobile.App.State;
-using Prism.Navigation;
 using System;
+using System.Collections.Generic;
+using Xamarin.Forms;
 
 namespace Ct.SubFinder.Mobile.App.Controllers
 {
     public class AppController
-    {
-        private INavigationService _navigationService;
+    {        
+        private INavigation _navigation;        
+        private App _app;
+
+        private readonly Dictionary<string, object[]> _viewModelConstructorParameters;
+        private readonly Dictionary<string, Page> _pages;
         private readonly IAppState<AppState, AppStateEvent> _appStateObservable;
         private readonly IAgent<AppState> _getSessionAgent;
         private readonly IAgent<AppState> _postSessionAgent;
@@ -20,7 +25,7 @@ namespace Ct.SubFinder.Mobile.App.Controllers
         public AppState State { get { return _appStateObservable.State; } }
 
         public AppController(           
-            IAppState<AppState, AppStateEvent> appStateObservable,
+            IAppState<AppState, AppStateEvent> appStateObservable,            
             IAgent<AppState> getSessionAgent,
             IAgent<AppState> postSessionAgent,
             IAgent<AppState> postUserAgent,
@@ -28,12 +33,18 @@ namespace Ct.SubFinder.Mobile.App.Controllers
             IAgent<AppState> putProfileAgent
             )
         {            
-            _appStateObservable = appStateObservable ?? throw new ArgumentNullException("appStateObservable");
-            _getSessionAgent = getSessionAgent ?? throw new ArgumentNullException("getSessionAgent");
-            _postSessionAgent = postSessionAgent ?? throw new ArgumentNullException("postSessionAgent");
-            _postUserAgent = postUserAgent ?? throw new ArgumentNullException("postUserAgent");
-            _postProfileAgent = postProfileAgent ?? throw new ArgumentNullException("postProfileAgent");
-            _putProfileAgent = putProfileAgent ?? throw new ArgumentNullException("putProfileAgent");
+            _appStateObservable = appStateObservable ?? throw new ArgumentNullException(nameof(appStateObservable));
+            _getSessionAgent = getSessionAgent ?? throw new ArgumentNullException(nameof(getSessionAgent));
+            _postSessionAgent = postSessionAgent ?? throw new ArgumentNullException(nameof(postSessionAgent));
+            _postUserAgent = postUserAgent ?? throw new ArgumentNullException(nameof(postUserAgent));
+            _postProfileAgent = postProfileAgent ?? throw new ArgumentNullException(nameof(postProfileAgent));
+            _putProfileAgent = putProfileAgent ?? throw new ArgumentNullException(nameof(putProfileAgent));
+
+            _pages = new Dictionary<string, Page>();
+            _viewModelConstructorParameters = new Dictionary<string, object[]>
+            {
+                {"appController", new object[]{this } }
+            };
         }
 
         public IDisposable SubscribeToEvents(IObserver<AppStateEvent> subscriber)
@@ -41,12 +52,12 @@ namespace Ct.SubFinder.Mobile.App.Controllers
             return _appStateObservable.Subscribe(subscriber);
         }
         
-        public void Start(INavigationService navigationService)
+        public void Start(App app)
         {
-            _navigationService = navigationService ?? throw new ArgumentNullException("navigationService");
-
+            _app = app;
             _getSessionAgent.SendRequest(_appStateObservable.State);
-            _appStateObservable.NotifySubscribers(AppStateEvent.SessionCreated);
+            _appStateObservable.NotifySubscribers(AppStateEvent.SessionCreated);            
+               
             NavigateToHome();
         }
 
@@ -76,64 +87,183 @@ namespace Ct.SubFinder.Mobile.App.Controllers
 
         public void LogOut()
         {
+            _pages.Clear();
             NavigateToHome();
         }
 
-        public void NavigateToHome()
+        public async void NavigateToHome()
         {
-            _navigationService.NavigateAsync("app:///NavigationPage/HomeContentPage");
+            var navPage = GetNavigationPage<Pages.Home.HomeContentPage, Pages.Home.HomeViewModel>(_viewModelConstructorParameters["appController"]);
+            _navigation = navPage.Navigation;
+            await _navigation.PopToRootAsync();
+            _app.MainPage = navPage;
+            
+            //_navigationService.NavigateAsync("app:///NavigationPage/HomeContentPage");
         }
 
-        public void NavigateToNewAccount()
-        {
-            _navigationService.NavigateAsync("app:///NavigationPage/HomeContentPage/NewAccountContentPage");
+        public async void NavigateToNewAccount()
+        {            
+            var page = GetContentPage<Pages.NewAccount.NewAccountContentPage, Pages.NewAccount.NewAccountViewModel>(_viewModelConstructorParameters["appController"]);
+            await _navigation.PushAsync(page);
+
+            //_navigationService.NavigateAsync("app:///NavigationPage/HomeContentPage/NewAccountContentPage");
         }
 
-        public void NavigateToSignUp()
+        public async void NavigateToSignUp()
         {
-            _navigationService.NavigateAsync("app:///NavigationPage/HomeContentPage/NewAccountContentPage/SignUpContentPage");
+            var page = GetContentPage<Pages.SignUp.SignUpContentPage, Pages.SignUp.SignUpViewModel>(_viewModelConstructorParameters["appController"]);
+            await _navigation.PushAsync(page);
+
+            //_navigationService.NavigateAsync("app:///NavigationPage/HomeContentPage/NewAccountContentPage/SignUpContentPage");
         }
 
-        public void NavigateToNewProfile()
+        public async void NavigateToNewProfile()
         {
-            _navigationService.NavigateAsync("app:///NavigationPage/HomeContentPage/NewAccountContentPage/SignUpContentPage/NewProfileContentPage");
+            var page = GetContentPage<Pages.NewProfile.NewProfileContentPage, Pages.NewProfile.NewProfileViewModel>(_viewModelConstructorParameters["appController"]);
+            await _navigation.PushAsync(page);
+
+            //_navigationService.NavigateAsync("app:///NavigationPage/HomeContentPage/NewAccountContentPage/SignUpContentPage/NewProfileContentPage");
         }
 
-        public void NavigateToSearchArea()
+        public async void NavigateToSearchArea()
         {
-            _navigationService.NavigateAsync("app:///NavigationPage/HomeContentPage/NewAccountContentPage/SignUpContentPage/NewProfileContentPage/SearchRadiusContentPage");
+            var page = GetContentPage<Pages.SearchRadius.SearchRadiusContentPage, Pages.SearchRadius.SearchRadiusViewModel>(_viewModelConstructorParameters["appController"]);
+            await _navigation.PushAsync(page);
+
+            //_navigationService.NavigateAsync("app:///NavigationPage/HomeContentPage/NewAccountContentPage/SignUpContentPage/NewProfileContentPage/SearchRadiusContentPage");
         }
 
-        public void NavigateToSkills()
+        public async void NavigateToSkills()
         {
-            _navigationService.NavigateAsync("app:///NavigationPage/HomeContentPage/NewAccountContentPage/SignUpContentPage/NewProfileContentPage/SearchRadiusContentPage/SkillsContentPage");
+            var page = GetContentPage<Pages.Skills.SkillsContentPage, Pages.Skills.SkillsViewModel>(_viewModelConstructorParameters["appController"]);
+            await _navigation.PushAsync(page);
+
+            //_navigationService.NavigateAsync("app:///NavigationPage/HomeContentPage/NewAccountContentPage/SignUpContentPage/NewProfileContentPage/SearchRadiusContentPage/SkillsContentPage");
         }
 
-        public void NavigateToForgotPassword()
+        public async void NavigateToForgotPassword()
         {
-            _navigationService.NavigateAsync("app:///NavigationPage/HomeContentPage/ForgotPasswordContentPage?title=Forgot Password"); 
+            var page = GetContentPage<Pages.ForgotPassword.ForgotPasswordContentPage, Pages.ForgotPassword.ForgotPasswordViewModel>();
+            await _navigation.PushAsync(page);
+
+            // _navigationService.NavigateAsync("app:///NavigationPage/HomeContentPage/ForgotPasswordContentPage?title=Forgot Password"); 
         }
 
         public void NavigateToMain()
         {
-            _navigationService.NavigateAsync("app:///NavigationMasterDetailPage/NavigationPage/NavigationContentPage");
+            var navPage = GetNavigationMasterDetailPage<Pages.Navigation.NavigationContentPage, Pages.Navigation.NavigationContentViewModel>();
+            _navigation = navPage.Detail.Navigation;
+            _app.MainPage = navPage;
+            
+            //_navigationService.NavigateAsync("app:///NavigationMasterDetailPage/NavigationPage/NavigationContentPage");
+        }
+        MasterDetailPage mdp;
+        public async void NavigateToDashboard()
+        {
+            var page = GetContentPage<Pages.Dashboard.DashboardContentPage, Pages.Dashboard.DashboardViewModel>(_viewModelConstructorParameters["appController"]);
+            await _navigation.PushAsync(page);
+
+            //_navigationService.NavigateAsync("app:///NavigationMasterDetailPage/NavigationPage/DashboardContentPage");
+        }
+        public async void NavigateToContacts()
+        {
+            var page = GetContentPage<Pages.Contacts.ContactsContentPage, Pages.Contacts.ContactsViewModel>();
+            await _navigation.PushAsync(page);
+
+            //_navigationService.NavigateAsync("app:///NavigationMasterDetailPage/NavigationPage/ContactsContentPage");
+        }
+        public async void NavigateToMessages()
+        {
+            var page = GetContentPage<Pages.Messages.MessagesContentPage, Pages.Messages.MessagesViewModel>();
+            await _navigation.PushAsync(page);
+
+            //_navigationService.NavigateAsync("app:///NavigationMasterDetailPage/NavigationPage/MessagesContentPage");
+        }
+        public async void NavigateToCamera()
+        {
+            var page = GetContentPage<Pages.Camera.CameraContentPage, Pages.Camera.CameraContentPage>();
+            await _navigation.PushAsync(page);
+
+            //_navigationService.NavigateAsync("app:///NavigationMasterDetailPage/NavigationPage/CameraContentPage");
         }
 
-        public void NavigateToDashboard()
+        private ContentPage GetContentPage<P, VM>(params object[] viewModelConstructorParameters) where P: Page where VM: class
         {
-            _navigationService.NavigateAsync("app:///NavigationMasterDetailPage/NavigationPage/DashboardContentPage");
+            ContentPage page = null;
+            var pageKey = typeof(P).ToString();
+            if (_pages.ContainsKey(pageKey))
+            {
+                page = _pages[pageKey] as ContentPage;
+            }
+            else
+            {
+                page = Activator.CreateInstance<P>() as ContentPage;
+                try
+                {
+                    page.BindingContext = Activator.CreateInstance(typeof(VM), viewModelConstructorParameters);
+                }catch(Exception ex)
+                {
+
+                }
+                _pages.Add(pageKey, page);
+            }
+            return page;
         }
-        public void NavigateToContacts()
+
+        private NavigationPage GetNavigationPage<P, VM>(params object[] viewModelConstructorParameters) where P: Page where VM: class
         {
-            _navigationService.NavigateAsync("app:///NavigationMasterDetailPage/NavigationPage/ContactsContentPage");
+            NavigationPage page = null;
+            var pageKey = typeof(P).ToString();
+            if (_pages.ContainsKey(pageKey))
+            {
+                page = _pages[pageKey] as NavigationPage;
+            }
+            else
+            {                
+                try
+                {
+                    page = new NavigationPage(Activator.CreateInstance(typeof(P)) as Page)
+                    {
+                        BindingContext = Activator.CreateInstance(typeof(VM), viewModelConstructorParameters)
+                    };                    
+                }
+                catch (Exception ex)
+                {
+
+                }
+                _pages.Add(pageKey, page);
+            }
+            return page;
         }
-        public void NavigateToMessages()
+
+        private MasterDetailPage GetNavigationMasterDetailPage<P, VM>(params object[] viewModelConstructorParameters) where P : Page where VM : class
         {
-            _navigationService.NavigateAsync("app:///NavigationMasterDetailPage/NavigationPage/MessagesContentPage");
-        }
-        public void NavigateToCamera()
-        {
-            _navigationService.NavigateAsync("app:///NavigationMasterDetailPage/NavigationPage/CameraContentPage");
+            MasterDetailPage page = null;
+            var pageKey = typeof(P).ToString();
+            if (_pages.ContainsKey(pageKey))
+            {
+                page = _pages[pageKey] as MasterDetailPage;
+            }
+            else
+            {
+                try
+                {
+                    page = new Pages.Navigation.NavigationMasterDetailPage()
+                    {
+                        BindingContext = new Pages.Navigation.NavigationMasterDetailViewModel(this),
+                        Detail = new NavigationPage(Activator.CreateInstance(typeof(P)) as Page)
+                        {
+                            BindingContext = Activator.CreateInstance(typeof(VM), viewModelConstructorParameters)
+                        }
+                    } as MasterDetailPage;
+                }
+                catch (Exception ex)
+                {
+
+                }
+                _pages.Add(pageKey, page);
+            }
+            return page;
         }
     }
 }
